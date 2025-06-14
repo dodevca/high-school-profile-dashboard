@@ -18,8 +18,7 @@ use App\Http\Controllers\Admin\{
     ModulController as AdminModul,
     AnnouncementController as AdminAnnouncement,
     EventController as AdminEvent,
-    NewsController as AdminNews,
-    GraduateController as AdminGraduate
+    NewsController as AdminNews
 };
 
 // Public Routes
@@ -31,32 +30,32 @@ Route::controller(PublicHome::class)->group(function () {
     Route::get('/sarana-prasarana', 'infrastructure')->name('home.infrastructure');
 });
 
-Route::prefix('galeri')->name('gallery.')->controller(PublicGallery::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
-});
+// Route::prefix('galeri')->name('gallery.')->controller(PublicGallery::class)->group(function () {
+//     Route::get('/', 'index')->name('index');
+//     Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
+// });
 
-Route::get('/prestasi', [PublicAchievement::class, 'index'])->name('achievement.index');
+// Route::get('/prestasi', [PublicAchievement::class, 'index'])->name('achievement.index');
 
-Route::prefix('modul')->name('modul.')->controller(PublicModul::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/{hash}', 'major')->name('major');
-});
+// Route::prefix('modul')->name('modul.')->controller(PublicModul::class)->group(function () {
+//     Route::get('/', 'index')->name('index');
+//     Route::get('/{hash}', 'major')->name('major');
+// });
 
-Route::prefix('pengumuman')->name('announcement.')->controller(PublicAnnouncement::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
-});
+// Route::prefix('pengumuman')->name('announcement.')->controller(PublicAnnouncement::class)->group(function () {
+//     Route::get('/', 'index')->name('index');
+//     Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
+// });
 
-Route::prefix('agenda')->name('event.')->controller(PublicEvent::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
-});
+// Route::prefix('agenda')->name('event.')->controller(PublicEvent::class)->group(function () {
+//     Route::get('/', 'index')->name('index');
+//     Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
+// });
 
-Route::prefix('berita')->name('news.')->controller(PublicNews::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
-});
+// Route::prefix('berita')->name('news.')->controller(PublicNews::class)->group(function () {
+//     Route::get('/', 'index')->name('index');
+//     Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
+// });
 
 // Admin Web Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -72,7 +71,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
-    Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
+    Route::controller(AdminAnnouncement::class)->prefix('pengumuman')->name('announcement.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('tambah', 'add')->name('add');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+    });
+
+    Route::controller(AdminEvent::class)->prefix('agenda')->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
         Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
@@ -84,31 +89,46 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('{hash}', 'edit')->name('edit');
     });
 
-    Route::get('ikatan-alumni', [AdminGraduate::class, 'index'])->name('maintenance.alumni');
-    Route::get('ikatan-alumni/1234567890', [AdminGraduate::class, 'edit'])->name('maintenance.alumni.edit');
-    Route::get('pengajuan-data-alumni', [AdminGraduate::class, 'index'])->name('maintenance.alumni.data');
-    Route::get('pengajuan-agenda', [AdminGraduate::class, 'index'])->name('maintenance.agenda');
+    Route::controller(AdminAchievement::class)->prefix('prestasi')->name('achievement.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('tambah', 'add')->name('add');
+        Route::get('{hash}', 'edit')->name('edit');
+    });
+
+    Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('tambah', 'add')->name('add');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+    });
+
+    Route::controller(AdminMajor::class)->prefix('jurusan')->name('major.')->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::controller(AdminSetting::class)->prefix('pengaturan')->name('setting.')->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
 });
 
 // Admin API Routes
 Route::middleware('api')->prefix('api/admin')->name('admin.api.')->group(function () {
-    Route::post('profil/password', [AdminProfile::class, 'password'])->name('profile.password');
-    Route::post('profil/username', [AdminProfile::class, 'username'])->name('profile.username');
+    // Route::post('profil/password', [AdminProfile::class, 'password'])->name('profile.password');
+    // Route::post('profil/username', [AdminProfile::class, 'username'])->name('profile.username');
 
-    Route::post('berita/create', [AdminNews::class, 'create'])->name('news.create');
-    Route::post('berita/update', [AdminNews::class, 'update'])->name('news.update');
-    Route::delete('berita/{id}', [AdminNews::class, 'delete'])->whereNumber('id')->name('news.delete');
+    // Route::post('berita/create', [AdminNews::class, 'create'])->name('news.create');
+    // Route::post('berita/update', [AdminNews::class, 'update'])->name('news.update');
+    // Route::delete('berita/{id}', [AdminNews::class, 'delete'])->whereNumber('id')->name('news.delete');
 
-    Route::post('galeri/upload-image', [AdminGallery::class, 'upload'])->name('gallery.upload');
-    Route::post('galeri/create', [AdminGallery::class, 'create'])->name('gallery.create');
-    Route::post('galeri/update', [AdminGallery::class, 'update'])->name('gallery.update');
-    Route::delete('galeri/{id}', [AdminGallery::class, 'delete'])->whereNumber('id')->name('gallery.delete');
+    // Route::post('galeri/upload-image', [AdminGallery::class, 'upload'])->name('gallery.upload');
+    // Route::post('galeri/create', [AdminGallery::class, 'create'])->name('gallery.create');
+    // Route::post('galeri/update', [AdminGallery::class, 'update'])->name('gallery.update');
+    // Route::delete('galeri/{id}', [AdminGallery::class, 'delete'])->whereNumber('id')->name('gallery.delete');
 
-    Route::post('modul/create', [AdminModul::class, 'create'])->name('modul.create');
-    Route::post('modul/update', [AdminModul::class, 'update'])->name('modul.update');
-    Route::delete('modul/{hash}', [AdminModul::class, 'delete'])->name('modul.delete');
+    // Route::post('modul/create', [AdminModul::class, 'create'])->name('modul.create');
+    // Route::post('modul/update', [AdminModul::class, 'update'])->name('modul.update');
+    // Route::delete('modul/{hash}', [AdminModul::class, 'delete'])->name('modul.delete');
 
-    Route::apiResource('pengumuman', AdminAnnouncement::class)->except(['show'])->names('announcement');
-    Route::apiResource('agenda', AdminEvent::class)->except(['show'])->names('event');
-    Route::apiResource('prestasi', AdminAchievement::class)->except(['show'])->names('achievement');
+    // Route::apiResource('pengumuman', AdminAnnouncement::class)->except(['show'])->names('announcement');
+    // Route::apiResource('agenda', AdminEvent::class)->except(['show'])->names('event');
+    // Route::apiResource('prestasi', AdminAchievement::class)->except(['show'])->names('achievement');
 });
