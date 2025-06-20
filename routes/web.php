@@ -3,22 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\{
     HomeController as PublicHome,
-    GalleryController as PublicGallery,
-    AchievementController as PublicAchievement,
-    ModulController as PublicModul,
-    AnnouncementController as PublicAnnouncement,
-    EventController as PublicEvent,
-    NewsController as PublicNews
+    // GalleryController as PublicGallery,
+    // AchievementController as PublicAchievement,
+    // ModulController as PublicModul,
+    // AnnouncementController as PublicAnnouncement,
+    // EventController as PublicEvent,
+    // NewsController as PublicNews
 };
 use App\Http\Controllers\Admin\{
     HomeController as AdminHome,
     ProfileController as AdminProfile,
-    GalleryController as AdminGallery,
-    AchievementController as AdminAchievement,
-    ModulController as AdminModul,
+    NewsController as AdminNews,
     AnnouncementController as AdminAnnouncement,
     EventController as AdminEvent,
-    NewsController as AdminNews
+    ModulController as AdminModul,
+    AchievementController as AdminAchievement,
+    GalleryController as AdminGallery,
+    MajorController as AdminMajor,
+    SettingController as AdminSetting
 };
 
 // Public Routes
@@ -67,38 +69,38 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::controller(AdminNews::class)->prefix('berita')->name('news.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminAnnouncement::class)->prefix('pengumuman')->name('announcement.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminEvent::class)->prefix('agenda')->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminModul::class)->prefix('modul')->name('modul.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{hash}', 'edit')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{hash}', 'edit')->name('edit');
     });
 
     Route::controller(AdminAchievement::class)->prefix('prestasi')->name('achievement.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{hash}', 'edit')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{hash}', 'edit')->name('edit');
     });
 
     Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminMajor::class)->prefix('jurusan')->name('major.')->group(function () {
@@ -110,7 +112,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-// Admin API Routes
+// API Routes
 Route::middleware('api')->prefix('api/admin')->name('admin.api.')->group(function () {
     // Route::post('profil/password', [AdminProfile::class, 'password'])->name('profile.password');
     // Route::post('profil/username', [AdminProfile::class, 'username'])->name('profile.username');

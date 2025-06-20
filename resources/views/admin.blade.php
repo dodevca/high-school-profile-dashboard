@@ -29,8 +29,8 @@
             <hr class="sidebar-divider my-0">
             <li class="nav-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
                 <a href="{{ route('admin.home') }}" class="nav-link">
-                    <i class='bx bx-bar-chart-alt'></i>
-                    <span>Ringkasan</span>
+                    <i class='bx bx-home-alt'></i>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <hr class="sidebar-divider">
