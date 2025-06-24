@@ -68,7 +68,7 @@
             <li class="nav-item {{ request()->routeIs('admin.teacher.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.teacher.index') }}" class="nav-link">
                     <i class='bx bxs-group'></i>
-                    <span>Guru</span>
+                    <span>Guru dan Staff</span>
                 </a>
             </li>
             <li class="nav-item {{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">
