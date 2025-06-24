@@ -65,6 +65,12 @@
                     <span>Prestasi</span>
                 </a>
             </li>
+            <li class="nav-item {{ request()->routeIs('admin.teacher.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.teacher.index') }}" class="nav-link">
+                    <i class='bx bxs-group'></i>
+                    <span>Guru</span>
+                </a>
+            </li>
             <li class="nav-item {{ request()->routeIs('admin.gallery.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.gallery.index') }}" class="nav-link">
                     <i class='bx bxs-image'></i>

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\{
     EventController as AdminEvent,
     ModulController as AdminModul,
     AchievementController as AdminAchievement,
+    TeacherController as AdminTeacher,
     GalleryController as AdminGallery,
     MajorController as AdminMajor,
     SettingController as AdminSetting
@@ -95,6 +96,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'index')->name('index');
         // Route::get('tambah', 'add')->name('add');
         // Route::get('{hash}', 'edit')->name('edit');
+    });
+
+    Route::controller(AdminTeacher::class)->prefix('guru')->name('teacher.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        // Route::get('tambah', 'add')->name('add');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
