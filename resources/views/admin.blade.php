@@ -106,7 +106,7 @@
                                 <i class="bx bxs-user"></i>
                             </a>
                             <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">
-                                <a href="{{ route('admin.setting.index') }}" class="dropdown-item">
+                                <a href="{{ route('admin.profile.index') }}" class="dropdown-item">
                                     <i class="bx bx-user mr-2"></i> Profile
                                 </a>
                                 <a href="#" class="dropdown-item">
