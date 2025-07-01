@@ -24,6 +24,10 @@ use App\Http\Controllers\Admin\{
     SettingController as AdminSetting
 };
 
+use App\Http\Controllers\Api\Admin\{
+    InformationController as ApiAdminInformation
+};
+
 // Public Routes
 Route::controller(PublicHome::class)->group(function () {
     Route::get('/', 'index')->name('home.index');
@@ -121,23 +125,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // API Routes
 Route::middleware('api')->prefix('api/admin')->name('admin.api.')->group(function () {
-    // Route::post('profil/password', [AdminProfile::class, 'password'])->name('profile.password');
-    // Route::post('profil/username', [AdminProfile::class, 'username'])->name('profile.username');
-
-    // Route::post('berita/create', [AdminNews::class, 'create'])->name('news.create');
-    // Route::post('berita/update', [AdminNews::class, 'update'])->name('news.update');
-    // Route::delete('berita/{id}', [AdminNews::class, 'delete'])->whereNumber('id')->name('news.delete');
-
-    // Route::post('galeri/upload-image', [AdminGallery::class, 'upload'])->name('gallery.upload');
-    // Route::post('galeri/create', [AdminGallery::class, 'create'])->name('gallery.create');
-    // Route::post('galeri/update', [AdminGallery::class, 'update'])->name('gallery.update');
-    // Route::delete('galeri/{id}', [AdminGallery::class, 'delete'])->whereNumber('id')->name('gallery.delete');
-
-    // Route::post('modul/create', [AdminModul::class, 'create'])->name('modul.create');
-    // Route::post('modul/update', [AdminModul::class, 'update'])->name('modul.update');
-    // Route::delete('modul/{hash}', [AdminModul::class, 'delete'])->name('modul.delete');
-
-    // Route::apiResource('pengumuman', AdminAnnouncement::class)->except(['show'])->names('announcement');
-    // Route::apiResource('agenda', AdminEvent::class)->except(['show'])->names('event');
-    // Route::apiResource('prestasi', AdminAchievement::class)->except(['show'])->names('achievement');
+    Route::post('setting/{id}', [ApiAdminInformation::class, 'update'])->name('information.update');
 });
