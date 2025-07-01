@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Information;
 
 class InformationController extends Controller
 {
@@ -70,17 +72,17 @@ class InformationController extends Controller
                 'data'    => $information,
             ], 200);
 
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'error' => 'Data informasi tidak ditemukan.'
             ], 404);
 
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch(\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors()
             ], 422);
 
-        } catch (\Exception $e) {
+        } catch(\Exception $e) {
             Log::error('Terjadi kesalahan saat memperbarui informasi sekolah: '.$e->getMessage());
             
             return response()->json([

@@ -11278,3 +11278,11 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+#alert-container {
+  z-index: 10000;
+}
+
+.alert-dismissible button {
+  padding: 1rem !important;
+}

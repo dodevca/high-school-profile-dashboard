@@ -124,6 +124,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // API Routes
-Route::middleware('api')->prefix('api/admin')->name('admin.api.')->group(function () {
-    Route::post('setting/{id}', [ApiAdminInformation::class, 'update'])->name('information.update');
+Route::middleware('api')->prefix('api/admin')->name('api.admin.')->group(function () {
+    Route::post('infromation/{id}', [ApiAdminInformation::class, 'update'])->name('information.update');
 });

@@ -7,6 +7,7 @@
     <meta content="@yield('meta_description', 'Dashboard')" name="description">
     <meta content="@yield('meta_keyword', 'Dashboard')" name="keywords">
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
@@ -95,6 +96,7 @@
         </ul>
         <div class="flex-column d-flex" id="content-wrapper">
             <div id="content">
+                @include('partials.alerts')
                 <nav class="mb-4 shadow bg-white navbar navbar-expand navbar-light static-top topbar">
                     <button class="mr-3 btn btn-link d-md-none rounded-circle" id="sidebarToggleTop">
                         <i class="bx bx-menu"></i>
@@ -130,8 +132,8 @@
         </div>
     </div>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    @yield('script')
 </body>
 </html>
