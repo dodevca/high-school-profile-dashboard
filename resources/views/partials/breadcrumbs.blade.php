@@ -1,18 +1,15 @@
-<section id="breadcrumbs" class="breadcrumbs">
-    <div class="container">
-        <ol>
-            @foreach($breadcrumbs as $breadcrumb)
-                @if(!$loop->last)
-                    @if(isset($breadcrumb['url']))
-                        <li><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a></li>
-                    @else
-                        <li>{{ $breadcrumb['label'] }}</li>
-                    @endif
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @foreach($breadcrumbs as $breadcrumb)
+            @if(!$loop->last)
+                @if(isset($breadcrumb['url']))
+                    <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a></li>
                 @else
-                    <li>{{ $breadcrumb['label'] }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['label'] }}</li>
                 @endif
-            @endforeach
-        </ol>
-        <h2>{{ $breadcrumb['label'] }}</h2>
-    </div>
-</section>
+            @else
+                <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['label'] }}</li>
+            @endif
+        @endforeach
+    </ol>
+</nav>

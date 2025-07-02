@@ -24,13 +24,13 @@
   --white: #fff;
   --gray: #858796;
   --gray-dark: #5a5c69;
-  --primary: #4e73df;
-  --secondary: #858796;
+  --primary: #00809D;
+  --secondary: #FF7601;
   --success: #1cc88a;
   --info: #36b9cc;
   --warning: #f6c23e;
   --danger: #e74a3b;
-  --light: #f8f9fc;
+  --light: #FCECDD;
   --dark: #5a5c69;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -64,7 +64,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #858796;
+  color: #212529;
   text-align: left;
   background-color: #fff;
 }
@@ -6574,7 +6574,7 @@ button.bg-dark:focus {
   border-color: #fff !important;
 }
 
-.rounded-sm {
+/* .rounded-sm {
   border-radius: 0.2rem !important;
 }
 
@@ -6616,7 +6616,7 @@ button.bg-dark:focus {
 
 .rounded-0 {
   border-radius: 0 !important;
-}
+} */
 
 .clearfix::after {
   display: block;
@@ -9900,8 +9900,8 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-color: #00809D;
+  background-image: linear-gradient(180deg, #00809D 10%, #097e99 100%);
   background-size: cover;
 }
 
@@ -10411,10 +10411,10 @@ a:focus {
 }
 
 .sidebar #sidebarToggle {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-right: .5rem;
   cursor: pointer;
 }
 
@@ -10454,7 +10454,6 @@ a:focus {
   font-size: 1rem;
   font-weight: 800;
   padding: 1.5rem 1rem;
-  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   z-index: 1;
@@ -10509,7 +10508,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 14rem !important;
+    width: 18rem !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
@@ -11278,4 +11277,12 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+#alert-container {
+  z-index: 10000;
+}
+
+.alert-dismissible button {
+  padding: 1rem !important;
 }
