@@ -97,24 +97,29 @@
         <div class="flex-column d-flex" id="content-wrapper">
             <div id="content">
                 @include('partials.alerts')
-                <nav class="mb-4 shadow bg-white navbar navbar-expand navbar-light static-top topbar">
-                    <button class="mr-3 btn btn-link d-md-none rounded-circle" id="sidebarToggleTop">
+                <nav class="navbar navbar-expand navbar-light bg-white shadow mb-4 topbar">
+                    <button class="btn btn-link d-md-none rounded-circle me-3" type="button" id="sidebarToggleTop" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle sidebar">
                         <i class="bx bx-menu"></i>
                     </button>
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown no-arrow">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="userDropdown">
-                                <span class="small d-lg-inline d-none mr-2 text-gray-600">Admin</span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="small d-none d-lg-inline text-gray-600 me-2">Admin</span>
                                 <i class="bx bxs-user"></i>
                             </a>
-                            <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">
-                                <a href="{{ route('admin.profile.index') }}" class="dropdown-item">
-                                    <i class="bx bx-user mr-2"></i> Profile
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bx bx-log-out mr-2"></i> Logout
-                                </a>
-                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
+                                        <i class="bx bx-user me-2"></i> Profile
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="bx bx-log-out me-2"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -132,6 +137,7 @@
         </div>
     </div>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @yield('script')
