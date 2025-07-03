@@ -20,8 +20,8 @@
         <ul class="navbar-nav accordion bg-gradient-primary sidebar sidebar-dark" id="accordionSidebar">
             <li class="d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.home') }}" class="align-items-center d-flex justify-content-center sidebar-brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="max-width: 36px">
-                    <div class="ms-3 sidebar-brand-text">SMK N 1 Seyegan</div>
+                    <img src="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/placeholder.webp') }}" alt="" class="img-fluid" style="max-width: 36px">
+                    <div class="ms-3 sidebar-brand-text">{{ $school->name }}</div>
                 </a>
                 <div class="d-none d-md-inline text-center">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
