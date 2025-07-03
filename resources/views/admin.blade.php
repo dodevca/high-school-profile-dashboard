@@ -88,8 +88,14 @@
                     <span>Jurusan</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('admin.setting.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.setting.index') }}" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('admin.greeting.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.greeting.index') }}" class="nav-link">
+                    <i class='bx bxs-comment-detail'></i>
+                    <span>Sambutan</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('admin.information.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.information.index') }}" class="nav-link">
                     <i class='bx bxs-cog'></i>
                     <span>Informasi Sekolah</span>
                 </a>

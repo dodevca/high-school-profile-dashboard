@@ -21,9 +21,9 @@ use App\Http\Controllers\Admin\{
     TeacherController as AdminTeacher,
     GalleryController as AdminGallery,
     MajorController as AdminMajor,
-    SettingController as AdminSetting
+    GreetingController as AdminGreeting,
+    InformationController as AdminInformation
 };
-
 use App\Http\Controllers\Api\Admin\{
     InformationController as ApiAdminInformation
 };
@@ -31,10 +31,10 @@ use App\Http\Controllers\Api\Admin\{
 // Public Routes
 Route::controller(PublicHome::class)->group(function () {
     Route::get('/', 'index')->name('home.index');
-    Route::get('/sambutan', 'greeting')->name('home.greeting');
-    Route::get('/visi-misi', 'vision')->name('home.vision');
-    Route::get('/tenaga-pendidik', 'teachers')->name('home.teachers');
-    Route::get('/sarana-prasarana', 'infrastructure')->name('home.infrastructure');
+    // Route::get('/sambutan', 'greeting')->name('home.greeting');
+    // Route::get('/visi-misi', 'vision')->name('home.vision');
+    // Route::get('/tenaga-pendidik', 'teachers')->name('home.teachers');
+    // Route::get('/sarana-prasarana', 'infrastructure')->name('home.infrastructure');
 });
 
 // Route::prefix('galeri')->name('gallery.')->controller(PublicGallery::class)->group(function () {
@@ -118,7 +118,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', 'index')->name('index');
     });
 
-    Route::controller(AdminSetting::class)->prefix('pengaturan')->name('setting.')->group(function () {
+    Route::controller(AdminGreeting::class)->prefix('sambutan')->name('greeting.')->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::controller(AdminInformation::class)->prefix('informasi')->name('information.')->group(function () {
         Route::get('/', 'index')->name('index');
     });
 });
