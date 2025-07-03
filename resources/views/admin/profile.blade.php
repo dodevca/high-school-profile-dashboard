@@ -11,9 +11,6 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-body d-flex align-items-center gap-3">
-                    <div class="position-relative">
-                        <img src="{{ asset('images/placeholder.webp') }}" alt="Profile" class="rounded-circle" width="80" height="80">
-                    </div>
                     <div>
                         <h4 class="mb-1">John Doe</h4>
                         <p class="text-muted mb-2">admin@example.com</p>
