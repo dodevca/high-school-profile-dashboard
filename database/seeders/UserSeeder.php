@@ -17,19 +17,19 @@ class UserSeeder extends Seeder
         User::truncate();
 
         User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@example.com',
+            'name'              => 'Administrator',
+            'email'             => 'admin@example.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('Admin123'),
-            'remember_token' => Str::random(10),
+            'password'          => Hash::make('Admin123'),
+            'remember_token'    => Str::random(10),
         ]);
 
         User::create([
-            'name' => 'Enggar Okta, S.Pd',
-            'email' => 'enggar@example.com',
+            'name'              => 'Enggar Okta, S.Pd',
+            'email'             => 'enggar@example.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'password'          => Hash::make('password'),
+            'remember_token'    => Str::random(10),
         ]);
     }
 }
