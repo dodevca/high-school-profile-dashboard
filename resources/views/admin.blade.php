@@ -8,7 +8,9 @@
     <meta content="@yield('meta_keyword', 'Dashboard')" name="keywords">
     <meta name="robots" content="noindex, nofollow" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/logo.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -18,10 +20,10 @@
 <body id="page-top">
     <div id="wrapper">
         <ul class="navbar-nav accordion bg-gradient-primary sidebar sidebar-dark" id="accordionSidebar">
-            <li class="d-flex align-items-center justify-content-between">
+            <li class="d-flex align-items-center justify-content-center justify-contetn-md-between">
                 <a href="{{ route('admin.home') }}" class="align-items-center d-flex justify-content-center sidebar-brand">
-                    <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="max-width: 36px">
-                    <div class="ms-3 sidebar-brand-text">SMK N 1 Seyegan</div>
+                    <img src="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/placeholder.webp') }}" alt="" class="img-fluid" style="max-width: 36px">
+                    <div class="ms-3 sidebar-brand-text">{{ $school->name }}</div>
                 </a>
                 <div class="d-none d-md-inline text-center">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -30,7 +32,7 @@
             <hr class="sidebar-divider my-0">
             <li class="nav-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
                 <a href="{{ route('admin.home') }}" class="nav-link">
-                    <i class='bx bx-home-alt'></i>
+                    <i class='bx bxs-home'></i>
                     <span>Dashboard</span>
                 </a>
             </li>
@@ -86,8 +88,14 @@
                     <span>Jurusan</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('admin.setting.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.setting.index') }}" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('admin.greeting.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.greeting.index') }}" class="nav-link">
+                    <i class='bx bxs-comment-detail'></i>
+                    <span>Sambutan</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('admin.information.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.information.index') }}" class="nav-link">
                     <i class='bx bxs-cog'></i>
                     <span>Informasi Sekolah</span>
                 </a>

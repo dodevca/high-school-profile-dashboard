@@ -71,7 +71,6 @@ class InformationController extends Controller
                 'message' => 'Informasi sekolah berhasil diperbarui.',
                 'data'    => $information,
             ], 200);
-
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'error' => 'Data informasi tidak ditemukan.'

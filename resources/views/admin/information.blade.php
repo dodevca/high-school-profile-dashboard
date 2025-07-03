@@ -9,11 +9,12 @@
     ])
     <div class="row">
         <div class="col-12">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="mb-4">Informasi Sekolah</h4>
-                    <form id="edit-form" action="{{ route('api.admin.information.update', ['id' => $information->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="PUT" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')kj
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Nama Sekolah</label>
@@ -87,38 +88,12 @@
 
 @section('script')
 <script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/edit.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const form       = document.querySelector('#edit-form');
         const saveButton = document.querySelector('#save');
 
-        saveButton.addEventListener('click', async e => {
-            e.preventDefault();
-
-            const data = new FormData(form);
-            
-            try {
-                const res = await fetch(form.action, {
-                    method: form.method,
-                    headers: {
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    body: data
-                });
-                const json = await res.json();
-
-                if (res.ok) {
-                    showAlert('success', json.message);
-                } else if (res.status === 422) {
-                    showAlert('danger', Object.values(json.errors).flat());
-                } else {
-                    showAlert('danger', json.error || 'Something went wrong');
-                }
-            } catch (err) {
-                showAlert('#alert-container', 'danger', 'Kesalahan jaringan, coba lagi.');
-            }
-        });
+        saveButton.addEventListener('click', saveData);
     });
 </script>
 @endsection

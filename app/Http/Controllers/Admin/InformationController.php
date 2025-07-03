@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Information;
 
-class SettingController extends Controller
+class InformationController extends Controller
 {
     public function index()
     {
         $information = Information::firstOrFail();
 
-        return view('admin.setting', compact('information'));
+        return view('admin.information', compact('information'));
     }
 }
