@@ -10534,7 +10534,6 @@ a:focus {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 1rem;
     width: 14rem;
   }
   .sidebar .nav-item .nav-link i {
@@ -11285,4 +11284,20 @@ body.sidebar-toggled footer.sticky-footer {
 
 .alert-dismissible button {
   padding: 1rem !important;
+}
+
+#accordionSidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: scroll;
+}
+
+#accordionSidebar::-webkit-scrollbar {
+  display: none;
+}
+
+#accordionSidebar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
