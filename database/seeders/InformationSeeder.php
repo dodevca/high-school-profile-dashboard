@@ -13,6 +13,8 @@ class InformationSeeder extends Seeder
      */
     public function run(): void
     {
+        Information::truncate();
+
         Information::create([
             'name'            => 'SMK Negeri 1 Seyegan',
             'npsn'            => '20234567',

@@ -12,8 +12,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-4">Informasi Sekolah</h4>
-                    <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="POST" enctype="multipart/form-data">
+                    <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="PUT" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')kj
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Nama Sekolah</label>
@@ -92,11 +93,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         const saveButton = document.querySelector('#save');
 
-        saveButton.addEventListener('click', async e => {
-            e.preventDefault();
-
-            saveData();
-        });
+        saveButton.addEventListener('click', saveData);
     });
 </script>
 @endsection

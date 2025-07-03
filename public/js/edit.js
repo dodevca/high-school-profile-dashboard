@@ -1,26 +1,35 @@
-async function saveData() {
-    const form = document.querySelector('#edit-form');
-    const data = new FormData(form);
-            
-    try {
-        const res = await fetch(form.action, {
-            method: form.method,
-            headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: data
-        });
-        const json = await res.json();
+function saveData() {
+    var form = document.getElementById('edit-form');
+    if (!form) return;
+    var data = new FormData(form);
 
+    fetch(form.action, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: data
+    })
+    .then(async function(response) {
+        const json = await response.json();
+        return { ok: response.ok, status: response.status, json: json };
+    })
+    .then(function(res) {
         if (res.ok) {
-            showAlert('success', json.message);
+            showAlert('success', res.json.message || 'Data saved successfully.');
         } else if (res.status === 422) {
-            showAlert('danger', Object.values(json.errors).flat());
+            var errs = [];
+            for (var key in res.json.errors) {
+                errs = errs.concat(res.json.errors[key]);
+            }
+            showAlert('danger', errs);
         } else {
-            showAlert('danger', json.error || 'Something went wrong');
+            showAlert('danger', res.json.error || 'Something went wrong.');
         }
-    } catch (err) {
-        showAlert('#alert-container', 'danger', 'Kesalahan jaringan, coba lagi.');
-    }
+    })
+    .catch(function(err) {
+        console.error(err);
+        showAlert('danger', 'Network error, please try again.');
+    });
 }
