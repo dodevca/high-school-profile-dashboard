@@ -9,10 +9,10 @@
     ])
     <div class="row">
         <div class="col-12">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="mb-4">Informasi Sekolah</h4>
-                    <form id="edit-form" action="{{ route('api.admin.information.update', ['id' => $information->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">

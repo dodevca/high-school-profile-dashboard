@@ -25,7 +25,8 @@ use App\Http\Controllers\Admin\{
     InformationController as AdminInformation
 };
 use App\Http\Controllers\Api\Admin\{
-    InformationController as ApiAdminInformation
+    InformationController as ApiAdminInformation,
+    GreetingController as ApiAdminGreeting
 };
 
 // Public Routes
@@ -129,5 +130,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // API Routes
 Route::middleware('api')->prefix('api/admin')->name('api.admin.')->group(function () {
-    Route::post('infromation/{id}', [ApiAdminInformation::class, 'update'])->name('information.update');
+    Route::apiResource('information', ApiAdminInformation::class);
+    Route::apiResource('greeting', ApiAdminGreeting::class);
 });

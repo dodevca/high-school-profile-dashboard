@@ -15,7 +15,7 @@ class GreetingSeeder extends Seeder
     {
         Greeting::create([
             'author'  => 'Enggar Okta, S.pd',
-            'photo'   => 'images/placeholder.webp',
+            'photo'   => NULL,
             'content' => '<p>Assalamu\'alaikum warahmatullahi wabarakatuh.</p>
                 <p>Puji syukur kita panjatkan ke hadirat Allah SWT atas rahmat dan karunia-Nya, sehingga SMK Negeri 1 Seyegan terus berkembang menjadi pusat keunggulan vokasi.</p>
                 <p>Kami berkomitmen menyelenggarakan pendidikan berkualitas, berkarakter, dan berwawasan global demi mencetak lulusan yang siap bersaing dan berkontribusi positif bagi masyarakat.</p>
