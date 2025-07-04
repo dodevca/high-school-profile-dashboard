@@ -131,6 +131,5 @@
         </nav>
     </div>
 </div>
-@endsection
 
 @endsection
