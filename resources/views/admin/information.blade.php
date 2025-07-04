@@ -14,7 +14,7 @@
                     <h4 class="mb-4">Informasi Sekolah</h4>
                     <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="PUT" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')kj
+                        @method('PUT')
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Nama Sekolah</label>
