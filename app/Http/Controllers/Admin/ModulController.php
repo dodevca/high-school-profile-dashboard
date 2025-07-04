@@ -11,4 +11,14 @@ class ModulController extends Controller
     {
         return view('admin.modul');
     }
+    
+    public function add()
+    {
+        return view('admin.modul-add');
+    }
+
+    public function edit()
+    {
+        return view('admin.modul-edit');
+    }
 }

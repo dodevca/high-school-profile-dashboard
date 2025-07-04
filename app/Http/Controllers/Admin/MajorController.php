@@ -11,4 +11,14 @@ class MajorController extends Controller
     {
         return view('admin.major');
     }
+    
+    public function add()
+    {
+        return view('admin.major-add');
+    }
+
+    public function edit()
+    {
+        return view('admin.major-edit');
+    }
 }

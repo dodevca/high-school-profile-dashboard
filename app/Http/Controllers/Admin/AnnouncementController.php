@@ -11,4 +11,14 @@ class AnnouncementController extends Controller
     {
         return view('admin.announcement');
     }
+
+    public function add()
+    {
+        return view('admin.announcement-add');
+    }
+
+    public function edit()
+    {
+        return view('admin.announcement-edit');
+    }
 }
