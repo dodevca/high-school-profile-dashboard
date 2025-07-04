@@ -21,11 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $info = Information::first();
+        $info = Information::first();
 
-        // View::share('school', (object) [
-        //     'name' => $info->name,
-        //     'logo' => $info->logo,
-        // ]);
+        View::share('school', (object) [
+            'name' => $info->name,
+            'logo' => $info->logo,
+        ]);
     }
 }
