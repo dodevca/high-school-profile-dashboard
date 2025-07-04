@@ -76,47 +76,57 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::controller(AdminNews::class)->prefix('berita')->name('news.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminAnnouncement::class)->prefix('pengumuman')->name('announcement.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminEvent::class)->prefix('agenda')->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminModul::class)->prefix('modul')->name('modul.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{hash}', 'edit')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{hash}', 'edit')->name('edit');
     });
 
     Route::controller(AdminAchievement::class)->prefix('prestasi')->name('achievement.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{hash}', 'edit')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{hash}', 'edit')->name('edit');
     });
 
     Route::controller(AdminTeacher::class)->prefix('guru')->name('teacher.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminMajor::class)->prefix('jurusan')->name('major.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('tambah', 'add')->name('add');
+        Route::get('edit', 'edit')->name('edit');
+        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminGreeting::class)->prefix('sambutan')->name('greeting.')->group(function () {
