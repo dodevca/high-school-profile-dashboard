@@ -11,4 +11,14 @@ class GalleryController extends Controller
     {
         return view('admin.gallery');
     }
+
+    public function add()
+    {
+        return view('admin.gallery-add');
+    }
+
+    public function edit()
+    {
+        return view('admin.gallery-edit');
+    }
 }

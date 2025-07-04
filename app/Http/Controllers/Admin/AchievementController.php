@@ -11,4 +11,14 @@ class AchievementController extends Controller
     {
         return view('admin.achievement');
     }
+
+    public function add()
+    {
+        return view('admin.achievement-add');
+    }
+
+    public function edit()
+    {
+        return view('admin.achievement-edit');
+    }
 }
