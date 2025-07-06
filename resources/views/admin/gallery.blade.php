@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="d-flex gap-2 mt-3 mt-md-0">
                                             <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pen"></i> Edit</a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+                                            <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i>Hapus</a>
                                         </div>
                                     </div>  
                                 </div>
