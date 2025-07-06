@@ -51,7 +51,7 @@ class AnnouncementController extends Controller
                 'image'      => $item->image,
                 'major_id'   => $item->major_id,
                 'active'     => (bool) $item->active,
-                'created_at' => $item->created_at ? $item->created_at->format('Y-m-d') : null,
+                'created_at' => $item->created_at ? $item->created_at->format('d-m-Y') : null,
             ];
         });
 

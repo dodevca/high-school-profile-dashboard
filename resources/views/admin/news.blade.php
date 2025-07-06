@@ -78,12 +78,12 @@
                                                 <a href="/berita/' + item.slug + '" class="text-dark text-decoration-none">\
                                                     <h5 class="mb-2">'+ item.title +'</h5>\
                                                     <div class="d-flex text-muted small">\
-                                                        <div class="me-3"><i class="bi bi-calendar me-1"></i>'+ item.created_at +'</div>\
+                                                        <div class="me-3">'+ item.created_at +'</div>\
                                                     </div>\
                                                 </a>\
                                             </div>\
                                             <div class="d-flex align-items-center mt-3 mt-md-0">\
-                                                <a href="/admin/berita/'+item.id+'" class="btn btn-outline-warning me-2"><i class="bx bx-edit-alt"></i> Edit</a>\
+                                                <a href="/admin/berita/'+item.id+'" class="btn btn-outline-warning me-2"><i class="bx bx-edit-alt me-2"></i>Edit</a>\
                                                 <button class="btn btn-outline-danger btn-delete" data-id="'+item.id+'"><i class="bx bx-trash"></i></button>\
                                             </div>\
                                         </div>\
@@ -97,13 +97,13 @@
 
                 var $p = $('#pagination').empty();
                 var prevDisabled = res.prev_page_url ? '' : 'disabled';
-                $p.append('<li class="page-item '+prevDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page-1)+'"><</a></li>');
+                $p.append('<li class="page-item '+prevDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page-1)+'">&laquo;</a></li>');
                 for (var i = 1; i <= res.last_page; i++) {
                     var active = i === res.current_page ? 'active' : '';
                     $p.append('<li class="page-item '+active+'"><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>');
                 }
                 var nextDisabled = res.next_page_url ? '' : 'disabled';
-                $p.append('<li class="page-item '+nextDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page+1)+'">></a></li>');
+                $p.append('<li class="page-item '+nextDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page+1)+'">&raquo;</a></li>');
             }).fail(function(xhr){
                 showAlert('danger', xhr.responseJSON?.error || 'Gagal memuat data.');
             });

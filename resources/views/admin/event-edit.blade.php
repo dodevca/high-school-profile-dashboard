@@ -4,70 +4,75 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Agenda'],
+            ['label' => 'Agenda', 'url' => route('admin.event.index')],
+            ['label' => $event->title],
         ]
     ])
     <div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <h4 class="card-title">Edit Agenda</h4>
-            </div>
-            <div class="card-body">
-                @if (session('errors'))
-                    <div class="alert alert-warning my-3" role="alert">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        <ul class="mb-0 ps-3">
-                            @foreach (session('errors') as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3 d-none">
-                        <label for="event-id" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="event-id" name="event-id" value="123" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name" value="Agenda Dummy" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="description" name="description" rows="10" required>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="date-start" class="form-label">Tanggal Mulai</label>
-                            <div class="border border-light rounded py-4 px-3 mb-2">
-                                <input type="text" id="inline-date" class="form-control d-none" name="date-start" value="2025-01-01" readonly required>
-                                <span class="text-muted">2025-01-01</span> {{-- Placeholder visible date --}}
-                            </div>
-                            <input type="time" class="form-control mt-2" id="time" name="time-start" value="08:00" required>
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title mb-0">Edit Agenda</h4>
+                </div>
+                <div class="card-body">
+                    <form id="edit-form" action="{{ route('api.admin.event.update', $event->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul Agenda</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $event->title) }}" required>
                         </div>
-
-                        <div class="col-md-6">
-                            <label for="date-end" class="form-label">Tanggal Selesai</label>
-                            <div class="border border-light rounded py-4 px-3 mb-2">
-                                <input type="text" id="inline-date1" class="form-control d-none" name="date-end" value="2025-01-02" readonly required>
-                                <span class="text-muted">2025-01-02</span> {{-- Placeholder visible date --}}
-                            </div>
-                            <input type="time" class="form-control mt-2" id="time1" name="time-end" value="12:00" required>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <textarea class="form-control" id="description" name="description" rows="6" required>{{ old('description', $event->description) }}</textarea>
                         </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="#" class="btn btn-danger ms-2">Batal</a>
-                </form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Mulai</label>
+                                <input type="date" class="form-control mb-2" id="start_date" name="start_date" value="{{ old('start_date', $event->start_time->format('Y-m-d')) }}" required>
+                                <input type="time" class="form-control" id="start_time" name="start_time" value="{{ old('start_time', $event->start_time->format('H:i')) }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Selesai</label>
+                                <input type="date" class="form-control mb-2" id="end_date" name="end_date" value="{{ old('end_date', $event->end_time->format('Y-m-d')) }}" required>
+                                <input type="time" class="form-control" id="end_time" name="end_time" value="{{ old('end_time', $event->end_time->format('H:i')) }}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Lokasi</label>
+                            <input type="text" class="form-control" id="location" name="location" value="{{ old('location', $event->location) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Unggah Gambar Lampiran Baru</label>
+                            <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                            @if($event->image)
+                                <img src="{{ asset('storage/' . $event->image) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 200px;">
+                            @endif
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Tipe Agenda</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="Internal" {{ old('type', $event->type) =='Internal'? 'selected':'' }}>Internal</option>
+                                <option value="External" {{ old('type', $event->type) =='External'? 'selected':'' }}>Eksternal</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ route('admin.event.index') }}" class="btn btn-outline-danger">Batal</a>
+                            <button type="button" class="btn btn-primary" id="save">Simpan</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
 
+@section('script')
+<script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/edit.js') }}"></script>
+<script>
+    $(function() {
+        $('#save').on('click', saveData);
+    });
+</script>
 @endsection

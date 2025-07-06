@@ -3,8 +3,8 @@
 @section('content')
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
-            ['label' => 'Dashboard',        'url' => route('admin.home')],
-            ['label' => 'Pengumuman',       'url' => route('admin.announcement.index')],
+            ['label' => 'Dashboard', 'url' => route('admin.home')],
+            ['label' => 'Pengumuman', 'url' => route('admin.announcement.index')],
             ['label' => $announcement->title],
         ]
     ])

@@ -50,7 +50,7 @@ class NewsController extends Controller
                 'slug'       => $item->slug,
                 'thumbnail'  => $item->thumbnail,
                 'active'     => (bool) $item->active,
-                'created_at' => $item->created_at ? $item->created_at->format('Y-m-d') : null,
+                'created_at' => $item->created_at ? $item->created_at->format('d-m-Y') : null,
             ];
         });
 

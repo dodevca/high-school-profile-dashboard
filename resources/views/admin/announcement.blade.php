@@ -96,13 +96,13 @@ $(function(){
                                         <a href="/pengumuman/' + item.id + '" class="text-dark text-decoration-none">\
                                             <h5 class="mb-1">'+item.title+'</h5>\
                                             <div class="d-flex align-items-center gap-2">\
-                                                <small class="text-muted"><i class="bi bi-calendar me-1"></i>'+item.created_at+'</small>\
+                                                <small class="text-muted">'+item.created_at+'</small>\
                                                 ' + majorBadge + '\
                                             </div>\
                                         </a>\
                                     </div>\
                                     <div class="d-flex">\
-                                        <a href="/admin/pengumuman/'+item.id+'" class="btn btn-outline-warning me-2"><i class="bx bx-edit-alt"></i> Edit</a>\
+                                        <a href="/admin/pengumuman/'+item.id+'" class="btn btn-outline-warning me-2"><i class="bx bx-edit-alt me-2"></i> Edit</a>\
                                         <button class="btn btn-outline-danger btn-delete" data-id="'+item.id+'"><i class="bx bx-trash"></i></button>\
                                     </div>\
                                 </div>\
@@ -115,13 +115,13 @@ $(function(){
 
             var $p = $('#pagination').empty();
             var prevDisabled = res.prev_page_url ? '' : 'disabled';
-            $p.append('<li class="page-item '+prevDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page-1)+'">&lt;</a></li>');
+            $p.append('<li class="page-item '+prevDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page-1)+'">&laquo;</a></li>');
             for (var i = 1; i <= res.last_page; i++) {
                 var active = i === res.current_page ? 'active' : '';
                 $p.append('<li class="page-item '+active+'"><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>');
             }
             var nextDisabled = res.next_page_url ? '' : 'disabled';
-            $p.append('<li class="page-item '+nextDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page+1)+'">&gt;</a></li>');
+            $p.append('<li class="page-item '+nextDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page+1)+'">&raquo;</a></li>');
         }).fail(function(xhr){
             showAlert('danger', xhr.responseJSON?.error || 'Gagal memuat pengumuman.');
         });

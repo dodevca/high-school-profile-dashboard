@@ -7,135 +7,175 @@
             ['label' => 'Agenda'],
         ]
     ])
-    @if (session('success'))
-    <div class="alert alert-success text-white" role="alert">
-        <i class="bi bi-check-circle me-2"></i>
-        {{ session('success') }}
-        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-                    <div class="d-flex flex-column flex-md-row align-items-center gap-2 order-md-2 w-100">
-                        {{-- Search bar sebagai elemen baru --}}
-                        <input type="text" class="form-control me-2" placeholder="Cari agenda..." aria-label="Search">
-                        
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Urutkan: Terbaru
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Mendatang</a></li>
-                                <li><a class="dropdown-item" href="#">Terbaru</a></li>
-                                <li><a class="dropdown-item" href="#">Terlama</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="mb-3 mb-md-0 order-1">
-                        <a href="#" class="btn btn-primary w-100 w-md-auto">
-                            <i class="bi bi-plus me-1"></i>Tambah Baru
-                        </a>
-                    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex align-items-center justify-content-end mb-3">
+                <a href="{{ route('admin.event.add') }}" class="btn btn-primary">
+                    <i class="bx bx-plus me-1"></i>Tambah baru
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+                <form id="searchForm" class="input-group mb-3 mb-md-0 w-50" role="search">
+                    <input id="searchInput" type="search" class="form-control" placeholder="Cari agenda..." aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                </form>
+                <div class="d-flex align-items-center justify-content-end">
+                    <select id="typeFilter" class="form-select me-3">
+                        <option value="">Semua Jenis</option>
+                        <option value="Internal">Internal</option>
+                        <option value="External">Eksternal</option>
+                    </select>
+                    <select id="sortSelect" class="form-select">
+                        <option value="start_time|asc">Mendatang</option>
+                        <option value="start_time|desc">Terbaru</option>
+                        <option value="start_time|asc">Terlama</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </div>
-
-    {{-- Daftar Agenda --}}
-    <div class="col-lg-12">
-        <div class="card border-0 mb-0">
-            <div class="card-header px-0 pb-3">
-                <h4 class="card-title">Agenda Sekolah</h4>
+        <div class="col-12">
+            <div class="row" id="eventContainer">
             </div>
-            <div class="card-body p-0">
-                <div class="row">
-                    {{-- Dummy data loop --}}
-                    @for ($i = 1; $i <= 3; $i++)
-                        <div class="col-lg-12">
-                            <div class="card bg-white mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                        <div class="d-flex flex-column">
-                                            <button type="button" class="btn p-0 text-start" data-bs-toggle="modal" data-bs-target="#modal{{ $i }}">
-                                                <h5 class="mb-2">Agenda Dummy {{ $i }}</h5>
-                                                <div class="badge bg-info text-dark mb-2">01-01-2025 - 02-01-2025</div>
-                                                <div class="d-flex gap-3 text-muted small">
-                                                    <div><i class="bi bi-calendar me-1"></i>01-01-2025</div>
-                                                    <div><i class="bi bi-eye me-1"></i>123</div>
-                                                </div>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex gap-2 mt-3 mt-md-0">
-                                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pen"></i> Edit</a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- Modal Detail --}}
-                                <div class="modal fade" id="modal{{ $i }}" tabindex="-1" aria-labelledby="modalTitle{{ $i }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                            <div class="modal-header justify-content-center">
-                                                <h5 class="modal-title" id="modalTitle{{ $i }}">Agenda Dummy {{ $i }}</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <td class="fw-bold">Dimulai</td>
-                                                        <td>: 01-01-2025</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-bold">Berakhir</td>
-                                                        <td>: 02-01-2025</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-bold">Deskripsi</td>
-                                                        <td>:</td>
-                                                    </tr>
-                                                </table>
-                                                <p class="ps-3">Deskripsi agenda dummy ke {{ $i }}.</p>
-                                            </div>
-                                            <div class="modal-footer justify-content-center">
-                                                <a href="#" class="btn btn-outline-primary">Edit</a>
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endfor
-
-                    {{-- Jika tidak ada data --}}
-                    @if (false)
-                        <div class="col-12">
-                            <div class="alert alert-warning w-100" role="alert">
-                                Tidak ada agenda.
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        {{-- Pagination Dummy --}}
-        <div class="mt-4 d-flex justify-content-center">
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Sebelumnya</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Selanjutnya</a></li>
-                </ul>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center" id="pagination"></ul>
             </nav>
         </div>
     </div>
-</div>
+@endsection
 
+@section('script')
+<script src="{{ asset('js/alert.js') }}"></script>
+<script>
+$(function(){
+    var currentPage = 1,
+        perPage     = 10;
+
+    function showAlert(type, messages) {
+        var $c = $('#alertContainer').html('');
+        var $a = $('<div>')
+            .addClass('alert alert-' + type + ' alert-dismissible fade show')
+            .attr('role','alert');
+        if (Array.isArray(messages)) {
+            var $ul = $('<ul>');
+            messages.forEach(function(msg){
+                $ul.append($('<li>').text(msg));
+            });
+            $a.append($ul);
+        } else {
+            $a.text(messages);
+        }
+        $a.append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
+        $('#alertContainer').append($a);
+    }
+
+    function loadEvents() {
+        var search = $('#searchInput').val(),
+            sort   = $('#sortSelect').val();
+
+        $.getJSON("{{ route('api.admin.event.index') }}", {
+            search:  search,
+            sort:    sort,
+            page:    currentPage,
+            perPage: perPage
+        })
+        .done(function(res){
+            var $list = $('#eventContainer').empty();
+            if (!res.data.length) {
+                $list.append(
+                    '<div class="col-12"><div class="alert alert-warning">Tidak ada agenda.</div></div>'
+                );
+            } else {
+                res.data.forEach(function(item){
+                    var typeBadge = item.type == 'External' ? '<span class="badge text-bg-secondary">Eksternal</span>' : '<span class="badge text-bg-secondary">Internal</span>';
+                    var card = '\
+                    <div class="col-lg-12 mb-3">\
+                        <div class="card">\
+                            <div class="card-body">\
+                                <div class="d-flex flex-wrap align-items-center justify-content-between">\
+                                    <div class="d-flex flex-column">\
+                                        <a href="/agenda/' + item.id + '" class="text-dark text-decoration-none">\
+                                                <h5 class="mb-2">'+ item.title +'</h5>\
+                                                <div class="badge bg-primary text-light mb-2">'+ item.start_time +'</div>\
+                                                <div class="badge bg-info text-light mb-2">'+ item.end_time +'</div>\
+                                                <div class="d-flex gap-3 text-muted small">\
+                                                <div class="d-flex align-items-center gap-2">\
+                                                    <div>'+ item.created_at +'</div>\
+                                                    ' + typeBadge + '\
+                                                </div>\
+                                            </div>\
+                                        </a>\
+                                    </div>\
+                                    <div class="d-flex gap-2 mt-3 mt-md-0">\
+                                        <a href="/admin/agenda/'+item.id+'" class="btn btn-outline-warning btn-sm"><i class="bx bx-edit-alt me-2"></i>Edit</a>\
+                                        <button class="btn btn-outline-danger btn-sm btn-delete" data-id="'+item.id+'"><i class="bx bx-trash"></i></button>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>';
+
+                    $list.append(card);
+                });
+            }
+
+            var $p = $('#pagination').empty();
+            var prevDisabled = res.prev_page_url ? '' : 'disabled';
+            $p.append('<li class="page-item '+prevDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page-1)+'">&laquo;</a></li>');
+            for (var i = 1; i <= res.last_page; i++) {
+                var active = i === res.current_page ? 'active' : '';
+                $p.append('<li class="page-item '+active+'"><a class="page-link" href="#" data-page="'+i+'">'+i+'</a></li>');
+            }
+            var nextDisabled = res.next_page_url ? '' : 'disabled';
+            $p.append('<li class="page-item '+nextDisabled+'"><a class="page-link" href="#" data-page="'+(res.current_page+1)+'">&raquo;</a></li>');
+        })
+        .fail(function(xhr){
+            showAlert('danger', xhr.responseJSON?.error || 'Gagal memuat data.');
+        });
+    }
+
+    loadEvents();
+
+    $('#searchForm').on('submit', function(e){
+        e.preventDefault();
+        currentPage = 1;
+        loadEvents();
+    });
+    $('#sortSelect').on('change', function(){
+        currentPage = 1;
+        loadEvents();
+    });
+    $('#typeFilter').on('change', function(){
+        currentPage = 1;
+        loadEvents();
+    });
+    $('#pagination').on('click', 'a.page-link', function(e){
+        e.preventDefault();
+        var p = +$(this).data('page');
+        if (p >= 1) {
+            currentPage = p;
+            loadEvents();
+        }
+    });
+
+    $('#agendaContainer').on('click', '.btn-delete', function(){
+        if (!confirm('Yakin akan menghapus?')) return;
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/api/admin/event/'+id,
+            method: 'POST',
+            data: { _method: 'DELETE' },
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        })
+        .done(function(){
+            showAlert('success', 'Agenda berhasil dihapus.');
+            loadEvents();
+        })
+        .fail(function(xhr){
+            showAlert('danger', xhr.responseJSON?.error || 'Gagal menghapus.');
+        });
+    });
+});
+</script>
 @endsection
