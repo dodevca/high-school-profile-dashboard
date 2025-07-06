@@ -23,21 +23,17 @@ class EventController extends Controller
         $page                        = (int) $request->input('page', 1);
         $perPage                     = (int) $request->input('perPage', 10);
         $type                        = $request->input('type');
-        $active                      = $request->input('active');
         [$sortField, $sortDirection] = explode('|', $sort) + [1 => 'asc'];
         $query                       = Event::query();
-
-        if(!is_null($active))
-            $query->where('active', (bool) $active);
         
-        if($type)
-            $query->where('type', $type);
-
         if($search)
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                   ->orWhere('description', 'like', "%{$search}%");
             });
+        
+        if($type)
+            $query->where('type', $type);
 
         $query->orderBy($sortField, $sortDirection);
 
@@ -58,7 +54,6 @@ class EventController extends Controller
                 'location'    => $event->location,
                 'image'       => $event->image,
                 'type'        => $event->type,
-                'active'      => (bool) $event->active,
                 'created_at'  => $event->created_at ? $event->created_at->format('d-m-Y') : null,
             ];
         });

@@ -51,6 +51,7 @@ class ModuleController extends Controller
                 'file_url'    => $module->file,
                 'cover_url'   => $module->cover,
                 'grade_level' => $module->grade_level,
+                'major_id'    => $module->major_id,
                 'major'       => $module->major?->name,
                 'major_code'  => $module->major?->code,
                 'subject'     => $module->subject,

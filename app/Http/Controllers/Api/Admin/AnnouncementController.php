@@ -20,20 +20,20 @@ class AnnouncementController extends Controller
         $sort                        = $request->input('sort', 'created_at|desc');
         $page                        = (int) $request->input('page', 1);
         $perPage                     = (int) $request->input('perPage', 10);
+        $majorId                     = $request->get('major_id');
         $search                      = $request->input('search');
-        $filterActive                = $request->input('filter_active');
         [$sortField, $sortDirection] = explode('|', $sort) + [1 => 'desc'];
         $query                       = Announcement::query()
             ->with('major');
-
-        if(!is_null($filterActive))
-            $query->where('active', $filterActive);
 
         if($search)
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                     ->orWhere('content', 'like', "%{$search}%");
             });
+
+        if($majorId)
+            $query->where('major_id', $majorId);
 
         $query->orderBy($sortField, $sortDirection);
 
@@ -44,14 +44,15 @@ class AnnouncementController extends Controller
             $page
         );
         
-        $paginated->getCollection()->transform(function($item) {
+        $paginated->getCollection()->transform(function($announcement) {
             return [
-                'id'         => $item->id,
-                'title'      => $item->title,
-                'image'      => $item->image,
+                'id'         => $announcement->id,
+                'title'      => $announcement->title,
+                'image'      => $announcement->image,
                 'major_id'   => $item->major_id,
-                'active'     => (bool) $item->active,
-                'created_at' => $item->created_at ? $item->created_at->format('d-m-Y') : null,
+                'major'      => $announcement->major?->name,
+                'major_code' => $announcement->major?->code,
+                'created_at' => $announcement->created_at ? $announcement->created_at->format('d-m-Y') : null,
             ];
         });
 

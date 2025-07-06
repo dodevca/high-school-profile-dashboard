@@ -59,11 +59,13 @@ $(function(){
 
     function loadAnnouncements() {
         var search = $('#searchInput').val();
+        var major_id = $('#majorFilter').val();
         var sort   = $('#sortSelect').val();
 
         $.getJSON("{{ route('api.admin.announcement.index') }}", {
             search:  search,
             sort:    sort,
+            major_id: major_id,
             page:    currentPage,
             perPage: perPage
         }).done(function(res){
@@ -126,10 +128,9 @@ $(function(){
         currentPage = 1;
         loadAnnouncements();
     });
-
     $('#majorFilter').on('change', function(){
         currentPage = 1;
-        loadEvents();
+        loadAnnouncements();
     });
     $('#pagination').on('click', 'a.page-link', function(e){
         e.preventDefault();

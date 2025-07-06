@@ -54,11 +54,13 @@ $(function(){
 
     function loadEvents() {
         var search = $('#searchInput').val(),
+            type   = $('#typeFilter').val();
             sort   = $('#sortSelect').val();
 
         $.getJSON("{{ route('api.admin.event.index') }}", {
             search:  search,
             sort:    sort,
+            type: type,
             page:    currentPage,
             perPage: perPage
         })
