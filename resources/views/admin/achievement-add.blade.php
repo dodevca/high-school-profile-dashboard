@@ -10,63 +10,76 @@
     <div class="row">
     <div class="col-lg-12">
         <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">Tambah Prestasi</h4>
+            </div>
             <div class="card-body">
-                <div class="d-flex flex-column flex-md-row align-items-center mb-3">
-                    <div class="mb-3 mb-md-0 w-100 w-md-auto">
-                        <a href="#" class="btn btn-primary w-100 w-md-auto">
-                            <i class="bi bi-plus me-1"></i>Tambah Prestasi
-                        </a>
+                @if(session()->has('errors'))
+                    <div class="alert alert-warning my-3" role="alert">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <strong>Terjadi kesalahan:</strong>
+                        </div>
+                        <ul class="mb-0 ps-3">
+                            @foreach(session('errors')->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
+                @endif
 
-                <div class="table-responsive">
-                    <table id="datatable" class="table table-striped">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Jenis Prestasi</th>
-                                <th>Nama Siswa</th>
-                                <th>Jurusan</th>
-                                <th>Tingkat</th>
-                                <th>Tahun</th>
-                                <th class="text-end">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for ($i = 0; $i < 5; $i++)
-                                <tr>
-                                    <td>Akademik</td>
-                                    <td>Nama Siswa {{ $i + 1 }}</td>
-                                    <td>Rekayasa Perangkat Lunak</td>
-                                    <td>Nasional</td>
-                                    <td>202{{ $i }}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-end gap-2">
-                                            <a href="#" class="btn btn-outline-primary btn-sm">
-                                                <i class="bi bi-pen"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-outline-danger btn-sm">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Jenis Prestasi</label>
+                        <input type="text" class="form-control" id="type" name="type" value="Akademik" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama Siswa</label>
+                        <input type="text" class="form-control" id="name" name="name" value="Nama Siswa" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="major" class="form-label">Jurusan</label>
+                        <input type="text" class="form-control" id="major" name="major" value="Rekayasa Perangkat Lunak" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="level" class="form-label">Tingkat</label>
+                        <input type="text" class="form-control" id="level" name="level" value="Nasional" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Tahun</label>
+                        <select class="form-select" id="year" name="year" required>
+                            <option value="">Pilih tahun</option>
+                            @for($year = now()->year; $year >= 2000; $year--)
+                                <option value="{{ $year }}">{{ $year }}</option>
                             @endfor
-                        </tbody>
-                        <tfoot class="table-light">
-                            <tr>
-                                <th>Jenis Prestasi</th>
-                                <th>Nama Siswa</th>
-                                <th>Jurusan</th>
-                                <th>Tingkat</th>
-                                <th>Tahun</th>
-                                <th class="text-end">Aksi</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Unggah Foto <span class="text-muted">(Opsional)</span></label>
+                        <input class="form-control" type="file" id="images" name="images[]" accept="image/*" multiple onchange="updateList()">
+                        <div id="images-label" class="form-text mt-1">Pilih atau drop gambar di sini</div>
+                        <ul id="file-list" class="mt-2 ps-3"></ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="#" class="btn btn-danger">Batal</a>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    function updateList() {
+        const input = document.getElementById('images');
+        const output = document.getElementById('file-list');
+        output.innerHTML = '';
+        for (let i = 0; i < input.files.length; ++i) {
+            const li = document.createElement('li');
+            li.textContent = input.files[i].name;
+            output.appendChild(li);
+        }
+    }
+</script>
 @endsection
