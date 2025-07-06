@@ -10,13 +10,15 @@
     {{-- Breadcrumb --}}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="bi bi-house me-1"></i>Beranda</a></li>
+        <li class="breadcrumb-item">
+            <a href="#"><i class="bi bi-house me-1"></i>Beranda</a>
+        </li>
         <li class="breadcrumb-item"><a href="#">Agenda</a></li>
         <li class="breadcrumb-item active" aria-current="page">Buat</li>
     </ol>
 </nav>
 
-{{-- Content Section --}}
+{{-- Content --}}
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -52,7 +54,7 @@
                             <label for="date-start" class="form-label">Tanggal Mulai</label>
                             <div class="border rounded p-3 bg-light">
                                 <input type="text" id="inline-date" class="form-control d-none" name="date-start" readonly required>
-                                <span class="text-muted">Tanggal akan dipilih via kalender (flatpickr)</span>
+                                <span class="text-muted small">Tanggal akan dipilih melalui datepicker</span>
                             </div>
                             <input type="time" class="form-control mt-3" id="time" name="time-start" required>
                         </div>
@@ -61,7 +63,7 @@
                             <label for="date-end" class="form-label">Tanggal Selesai</label>
                             <div class="border rounded p-3 bg-light">
                                 <input type="text" id="inline-date1" class="form-control d-none" name="date-end" readonly required>
-                                <span class="text-muted">Tanggal akan dipilih via kalender (flatpickr)</span>
+                                <span class="text-muted small">Tanggal akan dipilih melalui datepicker</span>
                             </div>
                             <input type="time" class="form-control mt-3" id="time1" name="time-end" required>
                         </div>
@@ -74,5 +76,4 @@
         </div>
     </div>
 </div>
-
 @endsection
