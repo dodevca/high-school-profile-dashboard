@@ -21,4 +21,9 @@ class GalleryController extends Controller
     {
         return view('admin.gallery-edit');
     }
+
+    public function delete()
+    {
+        return view('admin.gallery-delete');
+    }
 }
