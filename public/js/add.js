@@ -1,5 +1,5 @@
-function saveData() {
-    var form = document.getElementById('edit-form');
+function addData() {
+    var form = document.getElementById('add-form');
     if (!form) return;
     var data = new FormData(form);
 
@@ -17,7 +17,7 @@ function saveData() {
     })
     .then(function(res) {
         if (res.ok) {
-            showAlert('success', res.json.message || 'Data berhasil disimpan.');
+            showAlert('success', res.json.message || 'Data berhasil ditambahkan.');
         } else if (res.status === 422) {
             var errs = [];
             for (var key in res.json.errors) {

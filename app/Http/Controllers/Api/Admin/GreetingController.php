@@ -64,12 +64,10 @@ class GreetingController extends Controller
             return response()->json([
                 'error' => 'Data sambutan tidak ditemukan.'
             ], 404);
-
         } catch(\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors()
             ], 422);
-
         } catch(\Exception $e) {
             Log::error('Terjadi kesalahan saat memperbarui sambutan: '.$e->getMessage());
             

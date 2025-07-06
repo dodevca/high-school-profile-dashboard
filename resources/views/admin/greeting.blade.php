@@ -46,10 +46,8 @@
 <script src="{{ asset('js/alert.js') }}"></script>
 <script src="{{ asset('js/edit.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const saveButton = document.querySelector('#save');
-
-        saveButton.addEventListener('click', saveData);
+    $(function() {
+        $('#save').on('click', saveData);
     });
 </script>
 @endsection

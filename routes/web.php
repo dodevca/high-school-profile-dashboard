@@ -8,7 +8,7 @@ use App\Http\Controllers\Public\{
     // ModulController as PublicModul,
     // AnnouncementController as PublicAnnouncement,
     // EventController as PublicEvent,
-    // NewsController as PublicNews
+    // NewsController as PublicNews,
 };
 use App\Http\Controllers\Admin\{
     HomeController as AdminHome,
@@ -22,11 +22,12 @@ use App\Http\Controllers\Admin\{
     GalleryController as AdminGallery,
     MajorController as AdminMajor,
     GreetingController as AdminGreeting,
-    InformationController as AdminInformation
+    InformationController as AdminInformation,
 };
 use App\Http\Controllers\Api\Admin\{
+    NewsController as ApiAdminNews,
+    GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
-    GreetingController as ApiAdminGreeting
 };
 
 // Public Routes
@@ -76,8 +77,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::controller(AdminNews::class)->prefix('berita')->name('news.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminAnnouncement::class)->prefix('pengumuman')->name('announcement.')->group(function () {
@@ -140,6 +140,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // API Routes
 Route::middleware('api')->prefix('api/admin')->name('api.admin.')->group(function () {
-    Route::apiResource('information', ApiAdminInformation::class);
+    Route::apiResource('news', ApiAdminNews::class);
     Route::apiResource('greeting', ApiAdminGreeting::class);
+    Route::apiResource('information', ApiAdminInformation::class);
 });
