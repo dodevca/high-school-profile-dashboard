@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Information;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
             'name' => $info->name,
             'logo' => $info->logo,
         ]);
+
+        View::composer('admin.*', function($view){
+            $view->with('user', Auth::user());
+        });
     }
 }

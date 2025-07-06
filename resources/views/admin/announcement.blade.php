@@ -51,24 +51,6 @@ $(function(){
     var currentPage = 1;
     var perPage     = 10;
 
-    function showAlert(type, messages) {
-        $('#alertContainer').html('');
-        var $alert = $('<div>')
-            .addClass('alert alert-' + type + ' alert-dismissible fade show')
-            .attr('role','alert');
-        if (Array.isArray(messages)) {
-            var $ul = $('<ul>');
-            messages.forEach(function(msg){
-                $ul.append($('<li>').text(msg));
-            });
-            $alert.append($ul);
-        } else {
-            $alert.text(messages);
-        }
-        $alert.append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-        $('#alertContainer').append($alert);
-    }
-
     function loadAnnouncements() {
         var search = $('#searchInput').val();
         var sort   = $('#sortSelect').val();

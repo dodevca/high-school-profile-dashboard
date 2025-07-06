@@ -52,24 +52,6 @@ $(function(){
     var currentPage = 1,
         perPage     = 10;
 
-    function showAlert(type, messages) {
-        var $c = $('#alertContainer').html('');
-        var $a = $('<div>')
-            .addClass('alert alert-' + type + ' alert-dismissible fade show')
-            .attr('role','alert');
-        if (Array.isArray(messages)) {
-            var $ul = $('<ul>');
-            messages.forEach(function(msg){
-                $ul.append($('<li>').text(msg));
-            });
-            $a.append($ul);
-        } else {
-            $a.text(messages);
-        }
-        $a.append('<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>');
-        $('#alertContainer').append($a);
-    }
-
     function loadEvents() {
         var search = $('#searchInput').val(),
             sort   = $('#sortSelect').val();
@@ -159,7 +141,7 @@ $(function(){
         }
     });
 
-    $('#agendaContainer').on('click', '.btn-delete', function(){
+    $('#eventContainer').on('click', '.btn-delete', function(){
         if (!confirm('Yakin akan menghapus?')) return;
         var id = $(this).data('id');
         $.ajax({

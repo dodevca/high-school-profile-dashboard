@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Public\{
     HomeController as PublicHome,
     // GalleryController as PublicGallery,
@@ -31,6 +32,14 @@ use App\Http\Controllers\Api\Admin\{
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
+
+// Guest Routes
+Route::middleware('guest')->group(function(){
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('login.attempt');
+});
+
+Route::get('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Public Routes
 Route::controller(PublicHome::class)->group(function () {
@@ -68,12 +77,13 @@ Route::controller(PublicHome::class)->group(function () {
 //     Route::get('/{id}/{hash}', 'view')->whereNumber('id')->name('view');
 // });
 
-// Admin Web Routes
-Route::prefix('admin')->name('admin.')->group(function () {
+// Admin Routes
+Route::prefix('admin')->name('admin.')->middleware('auth') ->group(function () {
     Route::get('/', [AdminHome::class, 'index'])->name('home');
 
     Route::controller(AdminProfile::class)->prefix('profil')->name('profile.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('password', 'updatePassword')->name('password');
     });
 
     Route::controller(AdminNews::class)->prefix('berita')->name('news.')->group(function () {
@@ -139,7 +149,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // API Routes
-Route::middleware('api')->prefix('api/admin')->name('api.admin.')->group(function () {
+Route::middleware('api')->prefix('api/admin')->name('api.admin.')->middleware('auth') ->group(function () {
     Route::apiResource('news', ApiAdminNews::class);
     Route::apiResource('announcement', ApiAdminAnnouncement::class);
     Route::apiResource('event', ApiAdminEvent::class);
