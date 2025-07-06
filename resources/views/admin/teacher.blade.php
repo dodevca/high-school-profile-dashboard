@@ -50,7 +50,9 @@
 
                 {{-- Tombol Tambah --}}
                 <div class="col-auto">
-                    <a href="#" class="btn btn-primary">Tambah Baru</a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="bi bi-plus me-1"></i>Tambah Baru
+                    </a>
                 </div>
 
             </form>
@@ -67,10 +69,21 @@
                     <img src="{{ asset('images/placeholder.webp') }}" class="rounded-circle mb-3" width="100" height="100" alt="Foto Guru">
                     <h5 class="card-title">Nama Guru {{ $i }}</h5>
                     <p class="text-muted">Jabatan: Guru</p>
+
+                    {{-- Tombol Aksi Langsung --}}
                     <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pen"></i></a>
-                        <a href="#" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-pen me-1"></i>Edit
+                        </a>
+                        <form action="#" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash me-1"></i>Hapus
+                            </button>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
