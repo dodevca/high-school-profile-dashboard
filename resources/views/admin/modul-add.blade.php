@@ -4,7 +4,7 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Berita'],
+            ['label' => 'Modul'],
         ]
     ])
     
