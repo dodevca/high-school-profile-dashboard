@@ -17,7 +17,7 @@
         </div>
         <div class="col-12">
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
-                <form id="searchForm" class="input-group mb-3 mb-md-0 w-50" role="search">
+                <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
                     <input id="searchInput" type="search" class="form-control" placeholder="Cari agenda..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>

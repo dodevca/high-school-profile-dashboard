@@ -27,6 +27,12 @@
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center justify-content-end">
+                    <select id="majorFilter" class="form-select me-3">
+                        <option value="">Semua Jurusan</option>
+                        @foreach($majors as $major)
+                            <option value="{{ $major->id }}">{{ $major->name }}</option>
+                        @endforeach
+                    </select>
                     <select id="sortSelect" class="form-select">
                         <option value="created_at|desc">Terbaru</option>
                         <option value="created_at|asc">Terlama</option>
@@ -119,6 +125,11 @@ $(function(){
     $('#sortSelect').on('change', function(){
         currentPage = 1;
         loadAnnouncements();
+    });
+
+    $('#majorFilter').on('change', function(){
+        currentPage = 1;
+        loadEvents();
     });
     $('#pagination').on('click', 'a.page-link', function(e){
         e.preventDefault();

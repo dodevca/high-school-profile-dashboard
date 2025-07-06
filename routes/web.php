@@ -32,6 +32,7 @@ use App\Http\Controllers\Api\Admin\{
     NewsController as ApiAdminNews,
     AnnouncementController as ApiAdminAnnouncement,
     EventController as ApiAdminEvent,
+    ModuleController as ApiAdminModule,
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
@@ -155,6 +156,7 @@ Route::middleware('api')->prefix('api/admin')->name('api.admin.')->middleware('a
     Route::apiResource('news', ApiAdminNews::class);
     Route::apiResource('announcement', ApiAdminAnnouncement::class);
     Route::apiResource('event', ApiAdminEvent::class);
+    Route::apiResource('module', ApiAdminModule::class);
     Route::apiResource('greeting', ApiAdminGreeting::class);
     Route::apiResource('information', ApiAdminInformation::class);
 });

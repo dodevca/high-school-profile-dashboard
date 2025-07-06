@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\Major;
 
 class AnnouncementController extends Controller
 {
     public function index()
     {
-        return view('admin.announcement');
+        $majors = Major::all();
+
+        return view('admin.announcement', compact('majors'));
     }
 
     public function add()

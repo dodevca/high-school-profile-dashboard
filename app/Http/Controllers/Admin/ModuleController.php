@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Major;
 
 class ModuleController extends Controller
 {
     public function index()
     {
-        return view('admin.module');
+        $majors = Major::all();
+
+        return view('admin.module', compact('majors'));
     }
     
     public function add()
