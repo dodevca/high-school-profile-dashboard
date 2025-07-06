@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\{
 };
 use App\Http\Controllers\Api\Admin\{
     NewsController as ApiAdminNews,
+    AnnouncementController as ApiAdminAnnouncement,
+    EventController as ApiAdminEvent,
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
@@ -83,15 +85,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::controller(AdminAnnouncement::class)->prefix('pengumuman')->name('announcement.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminEvent::class)->prefix('agenda')->name('event.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminModul::class)->prefix('modul')->name('modul.')->group(function () {
@@ -141,6 +141,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // API Routes
 Route::middleware('api')->prefix('api/admin')->name('api.admin.')->group(function () {
     Route::apiResource('news', ApiAdminNews::class);
+    Route::apiResource('announcement', ApiAdminAnnouncement::class);
+    Route::apiResource('event', ApiAdminEvent::class);
     Route::apiResource('greeting', ApiAdminGreeting::class);
     Route::apiResource('information', ApiAdminInformation::class);
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Announcement;
 
 class AnnouncementController extends Controller
 {
@@ -17,8 +18,10 @@ class AnnouncementController extends Controller
         return view('admin.announcement-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.announcement-edit');
+        $announcement = Announcement::findOrFail($id);
+
+        return view('admin.announcement-edit', compact('announcement'));
     }
 }

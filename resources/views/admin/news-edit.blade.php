@@ -8,7 +8,7 @@
             ['label' => $news->title],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">

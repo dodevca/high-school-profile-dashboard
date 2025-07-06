@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
+use App\Models\Announcement;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class NewsController extends Controller
+class AnnouncementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,8 @@ class NewsController extends Controller
         $search                      = $request->input('search');
         $filterActive                = $request->input('filter_active');
         [$sortField, $sortDirection] = explode('|', $sort) + [1 => 'desc'];
-        $query                       = News::query();
+        $query                       = Announcement::query()
+            ->with('major');
 
         if(!is_null($filterActive))
             $query->where('active', $filterActive);
@@ -47,8 +48,8 @@ class NewsController extends Controller
             return [
                 'id'         => $item->id,
                 'title'      => $item->title,
-                'slug'       => $item->slug,
-                'thumbnail'  => $item->thumbnail,
+                'image'      => $item->image,
+                'major_id'   => $item->major_id,
                 'active'     => (bool) $item->active,
                 'created_at' => $item->created_at ? $item->created_at->format('Y-m-d') : null,
             ];
@@ -64,34 +65,34 @@ class NewsController extends Controller
     {
         try {
             $data = $request->validate([
-                'title'     => 'required|string|max:255',
-                'content'   => 'required|string',
-                'thumbnail' => 'nullable|image|max:2048',
+                'title'    => 'required|string|max:255',
+                'content'  => 'required|string',
+                'major_id' => 'nullable|exists:majors,id',
+                'image'    => 'nullable|image|max:2048',
             ]);
 
-            $data['slug']   = Str::slug($data['title']);
             $data['active'] = true;
 
             if($request->hasFile('thumbnail'))
-                $data['thumbnail'] = $request->file('thumbnail')
-                    ->store('news', 'public');
+                $data['image'] = $request->file('image')
+                    ->store('announcement', 'public');
 
-            $news = News::create($data);
+            $announcement = Announcement::create($data);
 
             return response()->json([
-                'message' => 'Berita berhasil dibuat.',
-                'data'    => $news,
+                'message' => 'Pengumuman berhasil dibuat.',
+                'data'    => $announcement,
             ], 201);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'error' => 'Data berita tidak ditemukan.'
+                'error' => 'Data pengumumans tidak ditemukan.'
             ], 404);
         } catch(ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors(),
             ], 422);
         } catch(\Exception $e) {
-            Log::error('Terjadi kesalahan saat membuat berita: '.$e->getMessage());
+            Log::error('Terjadi kesalahan saat membuat pengumuman: '.$e->getMessage());
 
             return response()->json([
                 'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',
@@ -113,41 +114,41 @@ class NewsController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $news = News::findOrFail($id);
+            $announcement = Announcement::findOrFail($id);
 
             $data = $request->validate([
-                'title'     => 'required|string|max:255',
-                'content'   => 'required|string',
-                'thumbnail' => 'nullable|image|max:2048',
+                'title'    => 'required|string|max:255',
+                'content'  => 'required|string',
+                'major_id' => 'nullable|exists:majors,id',
+                'image'    => 'nullable|image|max:2048',
             ]);
 
-            $data['slug']   = Str::slug($data['title']);
             $data['active'] = true;
 
-            if ($request->hasFile('thumbnail')) {
-                if($news->thumbnail)
-                    Storage::disk('public')->delete($news->thumbnail);
+            if ($request->hasFile('image')) {
+                if($announcement->image)
+                    Storage::disk('public')->delete($announcement->image);
                     
-                $data['thumbnail'] = $request->file('thumbnail')
-                    ->store('news', 'public');
+                $data['image'] = $request->file('image')
+                    ->store('announcement', 'public');
             }
 
-            $news->update($data);
+            $announcement->update($data);
 
             return response()->json([
-                'message' => 'Berita berhasil diperbarui.',
-                'data'    => $news,
+                'message' => 'Pengumuman berhasil diperbarui.',
+                'data'    => $announcement,
             ], 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'error' => 'Data berita tidak ditemukan.'
+                'error' => 'Data pengumuman tidak ditemukan.'
             ], 404);
         } catch(ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors(),
             ], 422);
         } catch(\Exception $e) {
-            Log::error('Terjadi kesalahan saat memperbarui berita: '.$e->getMessage());
+            Log::error('Terjadi kesalahan saat memperbarui pengumuman: '.$e->getMessage());
 
             return response()->json([
                 'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',
@@ -161,26 +162,26 @@ class NewsController extends Controller
     public function destroy(string $id)
     {
         try {
-            $news = News::findOrFail($id);
+            $announcement = Announcement::findOrFail($id);
 
-            if($news->thumbnail)
-                Storage::disk('public')->delete($news->thumbnail);
+            if($announcement->image)
+                Storage::disk('public')->delete($announcement->image);
 
-            $news->delete();
+            $announcement->delete();
 
             return response()->json([
-                'message' => 'Berita berhasil dihapus.',
+                'message' => 'Pengumuman berhasil dihapus.',
             ], 200);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'error' => 'Data berita tidak ditemukan.'
+                'error' => 'Data pengumuman tidak ditemukan.'
             ], 404);
         } catch(ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors(),
             ], 422);
         } catch(\Exception $e) {
-            Log::error('Terjadi kesalahan saat menghapus berita: '.$e->getMessage());
+            Log::error('Terjadi kesalahan saat menghapus pengumuman: '.$e->getMessage());
 
             return response()->json([
                 'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',

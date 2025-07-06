@@ -10,7 +10,7 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="d-flex align-items-center justify-content-end mb-3">
-                <a href="https://school.dodevca.com/admin/berita/tambah" class="btn btn-primary">
+                <a href="{{ route('admin.news.add') }}" class="btn btn-primary">
                     <i class="bx bx-plus me-1"></i>Buat baru
                 </a>
             </div>
