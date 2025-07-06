@@ -17,39 +17,32 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
-                <a href="{{ route('home.index') }}"><img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid"></a>
+                <a href="{{ route('home') }}"><img src="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/logo.png') }}" alt="" class="img-fluid"></a>
             </div>
             <nav id="navbar" class="navbar fw-bold">
                 <ul>
-                    <li><a class="{{ request()->routeIs('home.index') ? 'active' : '' }}" href="{{ route('home.index') }}">Beranda</a></li>
+                    <li><a class="{{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a></li>
                     <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a class="{{ request()->routeIs('home.greeting') ? 'active' : '' }}" href="{{ route('home.greeting') }}">Sambutan</a></li>
-                            <li><a class="{{ request()->routeIs('home.vision') ? 'active' : '' }}" href="{{ route('home.vision') }}">Visi Misi</a></li>
-                            <li><a class="{{ request()->routeIs('home.teachers') ? 'active' : '' }}" href="{{ route('home.teachers') }}">Tenaga Pendidik</a></li>
-                            <li><a class="{{ request()->routeIs('home.infrastructure') ? 'active' : '' }}" href="{{ route('home.infrastructure') }}">Sarana Prasarana</a></li>
-                            <li><a class="{{ request()->routeIs('gallery.index') ? 'active' : '' }}" href="{{ route('gallery.index') }}">Galeri</a></li>
+                            <li><a class="{{ request()->routeIs('greeting') ? 'active' : '' }}" href="{{ route('greeting') }}">Sambutan</a></li>
+                            <li><a class="{{ request()->routeIs('information') ? 'active' : '' }}" href="{{ route('information') }}">Informasi Sekolah</a></li>
+                            <li><a class="{{ request()->routeIs('teacher') ? 'active' : '' }}" href="{{ route('teacher') }}">Tenaga Pendidik</a></li>
+                            <li><a class="{{ request()->routeIs('gallery.*') ? 'active' : '' }}" href="{{ route('gallery.index') }}">Galeri</a></li>
                         </ul>
                     </li>
-                    <li><a class="{{ request()->routeIs('achievement.index') ? 'active' : '' }}" href="{{ route('achievement.index') }}">Prestasi</a></li>
-                    <li class="dropdown"><a href="#"><span>Akademik</span> <i class="bi bi-chevron-down"></i></a>
+                    <li><a class="{{ request()->routeIs('achievement') ? 'active' : '' }}" href="{{ route('achievement') }}">Prestasi</a></li>
+                    <li class="dropdown"><a href="#"><span>Akademik</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li class="dropdown {{ request()->routeIs('modul.index') ? 'active' : '' }}">
-                                <a href="#"><span>Modul</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">TKJ</a></li>
-                                </ul>
-                                </li>
-                            </li>
+                            <li><a class="{{ request()->routeIs('module.index', 1) ? 'active' : '' }}" href="{{ route('module.index', 1) }}">TKJ</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Informasi</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a class="{{ request()->routeIs('announcement.index') ? 'active' : '' }}" href="{{ route('announcement.index') }}">Pengumuman</a></li>
-                            <li><a class="{{ request()->routeIs('event.index') ? 'active' : '' }}" href="{{ route('event.index') }}">Agenda</a></li>
+                            <li><a class="{{ request()->routeIs('announcement.*') ? 'active' : '' }}" href="{{ route('announcement.index') }}">Pengumuman</a></li>
+                            <li><a class="{{ request()->routeIs('event.*') ? 'active' : '' }}" href="{{ route('event.index') }}">Agenda</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('news.index') }}">Blog</a></li>
+                    <li><a class="{{ request()->routeIs('news.*') ? 'active' : '' }}" href="{{ route('news.index') }}">Blog</a></li>
                 </ul>
                 <i class="bx bx-menu mobile-nav-toggle"></i>
             </nav>
@@ -63,11 +56,11 @@
         <div class="container">
             <div class="row gy-4 align-items-center">
                 <div class="col-md-6">
-                    <h5 class="mb-3">SMK N 1 Seyegan</h5>
-                    <p class="mb-1"><i class="bx bx-map me-2"></i> Jl. Kebonagung Street KM 8, Jamblangan</p>
-                    <p class="mb-1"><i class="bx bx-phone me-2"></i> (0274) 866442</p>
-                    <p class="mb-3"><i class="bx bx-envelope me-2"></i> smkn1seyegan@gmail.com</p>
-                    <div class="d-flex gap-3">
+                    <h5 class="mb-3">{{ $school->name ?? 'Nama Sekolah' }}</h5>
+                    <p class="mb-1"><i class="bx bx-map me-2"></i>{{ $school->address ?? 'Alamat sekolah' }}</p>
+                    <p class="mb-1"><i class="bx bx-phone me-2"></i>{{ $school->phone ?? 'Nomor telepon sekolah' }}</p>
+                    <p class="mb-3"><i class="bx bx-envelope me-2"></i>{{ $school->email ?? 'Email sekolah' }}</p>
+                    <div class="d-flex gap-2">
                         <a href="#" class="text-white"><i class="bx bxl-facebook fs-4"></i></a>
                         <a href="#" class="text-white"><i class="bx bxl-instagram fs-4"></i></a>
                         <a href="#" class="text-white"><i class="bx bxl-youtube fs-4"></i></a>
@@ -76,7 +69,7 @@
                 <div class="col-md-6">
                     <h5 class="mb-3">Navigasi</h5>
                     <ul class="list-unstyled">
-                        <li><a class="text-light text-decoration-none" href="{{ route('home.teachers') }}">Tenaga Pendidik</a></li>
+                        <li><a class="text-light text-decoration-none" href="{{ route('teacher') }}">Tenaga Pendidik</a></li>
                         <li><a class="text-light text-decoration-none" href="{{ route('gallery.index') }}">Galeri</a></li>
                         <li><a class="text-light text-decoration-none" href="{{ route('announcement.index') }}">Pengumuman</a></li>
                         <li><a class="text-light text-decoration-none" href="{{ route('news.index') }}">Blog</a></li>
@@ -85,7 +78,7 @@
             </div>
             <hr class="border-light my-4">
             <div class="text-center pb-3 small">
-                &copy; {{ now()->year }} <strong>SMK N 1 Seyegan</strong>. All rights reserved.
+                &copy; {{ now()->year }} <strong>{{ $school->name ?? 'Nama Sekolah' }}</strong>. All rights reserved.
             </div>
         </div>
     </footer>

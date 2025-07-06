@@ -10,7 +10,7 @@
                         <div class="row align-items-center auth-content">
                             <div class="col-lg-6 content-left">
                                 <div class="p-3">
-                                    <h2 class="mb-2">Log In</h2>
+                                    <h2 class="mb-2"><a href="{{ route('home') }}">{{ $school->name }}</a></h2>
                                     <p class="text-muted">Masuk untuk mengakses dashboard.</p>
                                     <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
                                         @csrf
