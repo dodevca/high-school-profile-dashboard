@@ -17,7 +17,7 @@ function saveData() {
     })
     .then(function(res) {
         if (res.ok) {
-            showAlert('success', res.json.message || 'Data saved successfully.');
+            showAlert('success', res.json.message || 'Data berhasil disimpan.');
         } else if (res.status === 422) {
             var errs = [];
             for (var key in res.json.errors) {
@@ -25,11 +25,11 @@ function saveData() {
             }
             showAlert('danger', errs);
         } else {
-            showAlert('danger', res.json.error || 'Something went wrong.');
+            showAlert('danger', res.json.error || 'Terjadi kesalahan.');
         }
     })
     .catch(function(err) {
         console.error(err);
-        showAlert('danger', 'Network error, please try again.');
+        showAlert('danger', 'Terjadi kesalahan jaringan, silakan coba lagi.');
     });
 }

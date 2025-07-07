@@ -20,8 +20,8 @@ class News extends Model
         'title',
         'slug',
         'content',
-        'end_time',
         'thumbnail',
+        'active',
     ];
 
     /**

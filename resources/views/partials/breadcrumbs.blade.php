@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb small">
         @foreach($breadcrumbs as $breadcrumb)
             @if(!$loop->last)
                 @if(isset($breadcrumb['url']))

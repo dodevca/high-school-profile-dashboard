@@ -41,6 +41,8 @@ class Achievement extends Model
      */
     protected function casts(): array
     {
-        return [];
+        return [
+            'achieved_at' => 'datetime',
+        ];
     }
 }

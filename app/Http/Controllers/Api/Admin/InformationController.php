@@ -75,12 +75,10 @@ class InformationController extends Controller
             return response()->json([
                 'error' => 'Data informasi tidak ditemukan.'
             ], 404);
-
         } catch(\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'errors' => $e->errors()
             ], 422);
-
         } catch(\Exception $e) {
             Log::error('Terjadi kesalahan saat memperbarui informasi sekolah: '.$e->getMessage());
             

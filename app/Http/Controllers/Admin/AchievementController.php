@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Achievement;
 
 class AchievementController extends Controller
 {
@@ -17,8 +18,10 @@ class AchievementController extends Controller
         return view('admin.achievement-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.achievement-edit');
+        $achievement = Achievement::findOrFail($id);
+
+        return view('admin.achievement-edit', compact('achievement'));
     }
 }

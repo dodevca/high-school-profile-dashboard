@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Information;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,8 +25,15 @@ class AppServiceProvider extends ServiceProvider
         $info = Information::first();
 
         View::share('school', (object) [
-            'name' => $info->name,
-            'logo' => $info->logo,
+            'name'    => $info->name,
+            'logo'    => $info->logo,
+            'address' => $info->address,
+            'email'   => $info->email,
+            'phone'   => $info->phone,
         ]);
+
+        View::composer('admin.*', function($view){
+            $view->with('user', Auth::user());
+        });
     }
 }

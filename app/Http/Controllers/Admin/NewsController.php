@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\News;
 
 class NewsController extends Controller
 {
@@ -17,8 +17,10 @@ class NewsController extends Controller
         return view('admin.news-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.news-edit');
+        $news = News::findOrFail($id);
+
+        return view('admin.news-edit', compact('news'));
     }
 }

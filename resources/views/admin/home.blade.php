@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row g-4">
-    @foreach(['Berita' => 'news', 'Pengumuman' => 'announcement', 'Agenda' => 'event', 'Modul' => 'modul', 'Prestasi' => 'achievement'] as $label => $slug)
+    @foreach(['Berita' => 'news', 'Pengumuman' => 'announcement', 'Agenda' => 'event', 'Modul' => 'module', 'Prestasi' => 'achievement'] as $label => $slug)
         <div class="col-md-6 col-lg-3">
             <a href="{{ route('admin.' . $slug . '.index') }}" class="text-decoration-none">
                 <div class="card shadow-sm border-0 h-100">

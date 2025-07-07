@@ -21,7 +21,7 @@
     <div id="wrapper">
         <ul class="navbar-nav accordion bg-gradient-primary sidebar sidebar-dark" id="accordionSidebar">
             <li class="d-flex align-items-center justify-content-center justify-contetn-md-between">
-                <a href="{{ route('admin.home') }}" class="align-items-center d-flex justify-content-center sidebar-brand">
+                <a href="{{ route('home') }}" class="align-items-center d-flex justify-content-center sidebar-brand">
                     <img src="{{ $school->logo ? asset('storage/' . $school->logo) : asset('images/placeholder.webp') }}" alt="" class="img-fluid" style="max-width: 36px">
                     <div class="ms-3 sidebar-brand-text">{{ $school->name }}</div>
                 </a>
@@ -56,8 +56,8 @@
                     <span>Agenda</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('admin.modul.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.modul.index') }}" class="nav-link">
+            <li class="nav-item {{ request()->routeIs('admin.module.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.module.index') }}" class="nav-link">
                     <i class='bx bxs-book'></i>
                     <span>Modul</span>
                 </a>
@@ -123,7 +123,7 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
                                         <i class="bx bx-log-out me-2"></i> Logout
                                     </a>
                                 </li>
