@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Module;
 use App\Models\Major;
 
 class ModuleController extends Controller
@@ -17,11 +18,16 @@ class ModuleController extends Controller
     
     public function add()
     {
-        return view('admin.module-add');
+        $majors = Major::all();
+
+        return view('admin.module-add', compact('majors'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.module-edit');
+        $module = Module::findOrFail($id);
+        $majors = Major::all();
+
+        return view('admin.module-edit', compact('module', 'majors'));
     }
 }

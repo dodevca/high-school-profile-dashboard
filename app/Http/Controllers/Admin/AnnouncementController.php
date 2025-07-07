@@ -18,13 +18,16 @@ class AnnouncementController extends Controller
 
     public function add()
     {
-        return view('admin.announcement-add');
+        $majors = Major::all();
+        
+        return view('admin.announcement-add', compact('majors'));
     }
 
     public function edit($id)
     {
         $announcement = Announcement::findOrFail($id);
+        $majors       = Major::all();
 
-        return view('admin.announcement-edit', compact('announcement'));
+        return view('admin.announcement-edit', compact('announcement', 'majors'));
     }
 }

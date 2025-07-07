@@ -49,7 +49,7 @@ class AnnouncementController extends Controller
                 'id'         => $announcement->id,
                 'title'      => $announcement->title,
                 'image'      => $announcement->image,
-                'major_id'   => $item->major_id,
+                'major_id'   => $announcement->major_id,
                 'major'      => $announcement->major?->name,
                 'major_code' => $announcement->major?->code,
                 'created_at' => $announcement->created_at ? $announcement->created_at->format('d-m-Y') : null,
@@ -76,7 +76,7 @@ class AnnouncementController extends Controller
 
             if($request->hasFile('thumbnail'))
                 $data['image'] = $request->file('image')
-                    ->store('announcement', 'public');
+                    ->store('announcements', 'public');
 
             $announcement = Announcement::create($data);
 
@@ -131,7 +131,7 @@ class AnnouncementController extends Controller
                     Storage::disk('public')->delete($announcement->image);
                     
                 $data['image'] = $request->file('image')
-                    ->store('announcement', 'public');
+                    ->store('announcements', 'public');
             }
 
             $announcement->update($data);

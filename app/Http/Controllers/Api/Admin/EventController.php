@@ -91,7 +91,7 @@ class EventController extends Controller
 
             if($request->hasFile('image')) {
                 $data['image'] = $request->file('image')
-                    ->store('event', 'public');
+                    ->store('events', 'public');
             }
 
             $event = Event::create($data);
@@ -159,7 +159,7 @@ class EventController extends Controller
                     Storage::disk('public')->delete($event->image);
                 
                 $data['image'] = $request->file('image')
-                    ->store('event', 'public');
+                    ->store('events', 'public');
             }
 
             $event->update($data);

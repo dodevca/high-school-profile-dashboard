@@ -68,7 +68,42 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'title'        => 'required|string|max:255',
+                'description'  => 'nullable|string',
+                'file'         => 'required|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+                'grade_level'  => 'required|string|max:10',
+                'major_id'     => 'required|exists:majors,id',
+                'subject'      => 'nullable|string|max:255',
+                'semester'     => 'required|string|max:10',
+            ]);
+
+            if($request->hasFile('file'))
+                $data['file'] = $request->file('file')
+                    ->store('module', 'public');
+
+            $module = Module::create($data);
+
+            return response()->json([
+                'message' => 'Modul berhasil dibuat.',
+                'data'    => $module,
+            ], 201);
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Data modul tidak ditemukan.'
+            ], 404);
+        } catch(ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
+        } catch(\Exception $e) {
+            Log::error('Terjadi kesalahan saat membuat modul: '.$e->getMessage());
+
+            return response()->json([
+                'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',
+            ], 500);
+        }
     }
 
     /**
@@ -84,7 +119,48 @@ class ModuleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $module = Module::findOrFail($id);
+
+            $data = $request->validate([
+                'title'       => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'file'        => 'nullable|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+                'grade_level' => 'required|string|max:10',
+                'major_id'    => 'required|exists:majors,id',
+                'subject'     => 'nullable|string|max:255',
+                'semester'    => 'required|string|max:10',
+            ]);
+
+            if($request->hasFile('file')) {
+                if($module->file)
+                    Storage::disk('public')->delete($module->file);
+
+                $data['file'] = $request->file('file')
+                    ->store('module', 'public');
+            }
+
+            $module->update($data);
+
+            return response()->json([
+                'message' => 'Modul berhasil diperbarui.',
+                'data'    => $module->fresh(),
+            ], 200);
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Data modul tidak ditemukan.'
+            ], 404);
+        } catch(ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
+        } catch(\Exception $e) {
+            Log::error('Terjadi kesalahan saat memperbarui modul: '.$e->getMessage());
+
+            return response()->json([
+                'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',
+            ], 500);
+        }
     }
 
     /**
@@ -92,6 +168,31 @@ class ModuleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $module = Module::findOrFail($id);
+
+            if($module->file)
+                Storage::disk('public')->delete($module->file);
+
+            $module->delete();
+
+            return response()->json([
+                'message' => 'Modul berhasil dihapus.',
+            ], 200);
+        } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => 'Data modul tidak ditemukan.'
+            ], 404);
+        } catch(ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
+        } catch(\Exception $e) {
+            Log::error('Terjadi kesalahan saat menghapus modul: '.$e->getMessage());
+
+            return response()->json([
+                'error' => 'Terjadi kesalahan tak terduga. Coba lagi nanti.',
+            ], 500);
+        }
     }
 }

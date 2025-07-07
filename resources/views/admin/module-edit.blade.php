@@ -4,96 +4,83 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Modul'],
+            ['label' => 'Modul', 'url' => route('admin.module.index')],
+            ['label' => $module->title],
         ]
     ])
-    <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="bi bi-house me-1"></i>Beranda</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="#">Modul</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Judul Modul Dummy</li>
-    </ol>
-</nav>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header d-flex justify-content-start">
-                <h4 class="card-title">Edit Modul</h4>
-            </div>
-            <div class="card-body">
-                @if (session('errors'))
-                    <div class="alert alert-warning my-3" role="alert">
-                        <div class="d-flex align-items-start">
-                            <i class="bi bi-exclamation-triangle me-2"></i>
-                            <ul class="mb-0 ps-3">
-                                @foreach (session('errors') as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form id="edit-form" action="{{ route('api.admin.module.update', $module->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul Modul</label>
+                            <input type="text" id="title" name="title" class="form-control" value="{{ old('title', $module->title) }}" required>
                         </div>
-                    </div>
-                @endif
-
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <input type="hidden" name="modul-id" value="123">
-
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="title" name="title" value="Judul Modul Dummy" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="major" class="form-label">Jurusan</label>
-                        <input type="text" class="form-control" id="major" name="major" value="Teknik Informatika" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="writer" class="form-label">Penulis</label>
-                        <input type="text" class="form-control" id="writer" name="writer" value="John Doe" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="teacher" class="form-label">Pengajar</label>
-                        <input type="text" class="form-control" id="teacher" name="teacher" value="Jane Smith" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="tags" class="form-label">Tagar</label>
-                        <input type="text" class="form-control" id="tags" name="tags" value="laravel,blade,module">
-                        <div class="form-text">Tulis tagar dipisahkan menggunakan tanda koma (,).</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="current-modul" class="form-label">Modul</label>
-                        <input type="text" class="form-control" id="current-modul" name="current-modul" value="modul-dummy.pdf" readonly>
-                        <a href="#" class="btn btn-outline-primary w-100 mt-2">
-                            <i class="bi bi-eye"></i> Tampilkan Modul
-                        </a>
-                    </div>
-
-                    <div class="text-center border-top my-4 position-relative">
-                        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted">ganti dengan modul baru</span>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="modul" class="form-label">Ganti Modul</label>
-                        <input class="form-control" type="file" id="modul" name="modul" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx">
-                    </div>
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="#" class="btn btn-danger">Batal</a>
-                    </div>
-                </form>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <textarea id="description" name="description" class="form-control" rows="6" required>{{ old('description', $module->description) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">File Modul</label>
+                            <div class="input-group">
+                                <input type="text"class="form-control" value="{{ basename($module->file) }}" readonly>
+                                <a href="{{ asset('storage/'.$module->file) }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="bx bx-show me-1"></i> Lihat
+                                </a>
+                            </div>
+                        </div>
+                        <div class="position-relative border-top my-4">
+                            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted">
+                                Ganti dengan file modul
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" id="file" name="file" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                            <div class="form-text">Format: PDF, Word, Excel, PowerPoint. Maksimal: 10MB.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="major_id" class="form-label">Jurusan</label>
+                            <select id="major_id" name="major_id" class="form-select" required>
+                                @foreach($majors as $m)
+                                    <option value="{{ $m->id }}" {{ $m->id == old('major_id', $module->major_id) ? 'selected' : '' }}>{{ $m->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="grade_level" class="form-label">Tingkat Kelas</label>
+                            <input type="text" id="grade_level" name="grade_level" class="form-control" value="{{ old('grade_level', $module->grade_level) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Mata Pelajaran</label>
+                            <input type="text" id="subject" name="subject" class="form-control" value="{{ old('subject', $module->subject) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="semester" class="form-label">Semester</label>
+                            <select id="semester" name="semester" class="form-select" required>
+                                <option value="Ganjil" {{ old('semester', $module->semester) == 'Ganjil' ? 'selected' : '' }}>Ganjil</option>
+                                <option value="Genap"  {{ old('semester', $module->semester) == 'Genap'  ? 'selected' : '' }}>Genap</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ route('admin.event.index') }}" class="btn btn-outline-danger">Batal</a>
+                            <button type="button" class="btn btn-primary" id="save">Simpan</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/edit.js') }}"></script>
+<script>
+    $(function(){
+        $('#save').on('click', saveData);
+    });
+</script>
 @endsection

@@ -30,10 +30,10 @@
                         <div class="mb-3">
                             <label for="major_id" class="form-label">Jurusan</label>
                             <select class="form-select" id="major_id" name="major_id">
-                                <option value="">— Semua Jurusan —</option>
-                                <option value="1">Teknik Komputer dan Jaringan</option>
-                                <option value="2">Rekayasa Perangkat Lunak</option>
-                                <option value="3">Multimedia</option>
+                                <option value="">Semua Jurusan</option>
+                                @foreach($majors as $major)
+                                    <option value="{{ $major->id }}">{{ $major->name }}</option>
+                                @endforeach
                             </select>
                             <div class="form-text">
                                 Pilih jurusan terkait atau kosongi untuk semua jurusan.

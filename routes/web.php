@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\Admin\{
     AnnouncementController as ApiAdminAnnouncement,
     EventController as ApiAdminEvent,
     ModuleController as ApiAdminModule,
+    AchievementController as ApiAdminAchievement,
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
@@ -111,14 +112,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth') ->group(function () {
     Route::controller(AdminModule::class)->prefix('modul')->name('module.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('{id}', 'edit')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminAchievement::class)->prefix('prestasi')->name('achievement.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{hash}', 'edit')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminTeacher::class)->prefix('guru')->name('teacher.')->group(function () {
@@ -157,6 +157,7 @@ Route::middleware('api')->prefix('api/admin')->name('api.admin.')->middleware('a
     Route::apiResource('announcement', ApiAdminAnnouncement::class);
     Route::apiResource('event', ApiAdminEvent::class);
     Route::apiResource('module', ApiAdminModule::class);
+    Route::apiResource('achievement', ApiAdminAchievement::class);
     Route::apiResource('greeting', ApiAdminGreeting::class);
     Route::apiResource('information', ApiAdminInformation::class);
 });

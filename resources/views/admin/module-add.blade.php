@@ -4,87 +4,71 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Modul'],
+            ['label' => 'Modul', 'url' => route('admin.module.index')],
+            ['label' => 'Tambah Modul'],
         ]
     ])
-    {{-- BREADCRUMB --}}
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#"><i class="bi bi-house me-1"></i>Beranda</a>
-        </li>
-        <li><i class="bi bi-chevron-compact-right mx-1"></i></li>
-        <li class="breadcrumb-item">
-            <a href="#">Modul</a>
-        </li>
-        <li><i class="bi bi-chevron-compact-right mx-1"></i></li>
-        <li class="breadcrumb-item active" aria-current="page">Tambah</li>
-    </ol>
-</nav>
-
-{{-- CONTENT --}}
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header d-flex justify-content-start">
-                <h4 class="card-title">Tambah Modul</h4>
-            </div>
-            <div class="card-body">
-                @if (session('errors'))
-                    <div class="alert alert-warning my-3" role="alert">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-exclamation-triangle me-2"></i>
-                            <ul class="mb-0 ps-3">
-                                @foreach (session('errors') as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endif
-
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="title" name="title" value="Judul Dummy" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="major" class="form-label">Jurusan</label>
-                        <input type="text" class="form-control" id="major" name="major" value="Teknik Informatika" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="writer" class="form-label">Penulis</label>
-                        <input type="text" class="form-control" id="writer" name="writer" value="Nama Penulis" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="teacher" class="form-label">Pengajar</label>
-                        <input type="text" class="form-control" id="teacher" name="teacher" value="Nama Pengajar" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="tags" class="form-label">Tagar</label>
-                        <input type="text" class="form-control" id="tags" name="tags" placeholder="Contoh: Laravel, Bootstrap, Blade">
-                        <div class="form-text">Tulis tagar dipisahkan menggunakan tanda koma (,).</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="modul" class="form-label">Unggah Modul</label>
-                        <input class="form-control" type="file" id="modul" name="modul" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" required>
-                    </div>
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="#" class="btn btn-danger">Batal</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <div class="row">
+	<div class="col-lg-12">
+		<div class="card shadow-sm">
+			<div class="card-header">
+				<h4 class="card-title mb-0">Tambah Modul</h4>
+			</div>
+			<div class="card-body">
+				<form id="add-form" action="{{ route('api.admin.module.store') }}" method="POST" enctype="multipart/form-data"> @csrf <div class="mb-3">
+						<label for="title" class="form-label">Judul Modul</label>
+						<input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}" required>
+					</div>
+					<div class="mb-3">
+						<label for="description" class="form-label">Deskripsi</label>
+						<textarea id="description" name="description" class="form-control" rows="5">{{ old('description') }}</textarea>
+					</div>
+					<div class="mb-3">
+						<label for="file" class="form-label">Unggah File Modul</label>
+						<input type="file" id="file" name="file" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" required>
+                        <div class="form-text">Format: PDF, Word, Excel, PowerPoint. Maksimal: 10MB.</div>
+					</div>
+					<div class="mb-3">
+						<label for="major_id" class="form-label">Jurusan</label>
+						<select id="major_id" name="major_id" class="form-select" required>
+							<option value="" selected disabled>Pilih Jurusan</option>
+                            @foreach($majors as $m)
+                                <option value="{{ $m->id }}" {{ old('major_id') == $m->id ? 'selected' : '' }}>{{ $m->name }}</option>
+                            @endforeach
+                        </select>
+					</div>
+					<div class="mb-3">
+						<label for="grade_level" class="form-label">Tingkat Kelas</label>
+						<input type="text" id="grade_level" name="grade_level" class="form-control" value="{{ old('grade_level') }}" required>
+					</div>
+					<div class="mb-3">
+						<label for="subject" class="form-label">Mata Pelajaran</label>
+						<input type="text" id="subject" name="subject" class="form-control" value="{{ old('subject') }}">
+					</div>
+					<div class="mb-3">
+						<label for="semester" class="form-label">Semester</label>
+						<select id="semester" name="semester" class="form-select" required>
+							<option value="Ganjil" {{ old('semester')=='Ganjil' ? 'selected':'' }}>Ganjil</option>
+							<option value="Genap" {{ old('semester')=='Genap'  ? 'selected':'' }}>Genap</option>
+						</select>
+					</div>
+					<div class="d-flex justify-content-end gap-2">
+						<a href="{{ route('admin.module.index') }}" class="btn btn-outline-secondary"> Batal </a>
+						<button type="button" id="add" class="btn btn-primary"> Simpan </button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
+@endsection
 
+@section('script')
+<script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/add.js') }}"></script>
+<script>
+    $(function(){
+        $('#add').on('click', addData);
+    });
+</script>
 @endsection

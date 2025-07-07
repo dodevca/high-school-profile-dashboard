@@ -31,12 +31,14 @@
                     <select id="sortSelect" class="form-select">
                         <option value="created_at|desc">Terbaru</option>
                         <option value="created_at|asc">Terlama</option>
+                        <option value="grade_level|asc">Kelas Terkecil</option>
+                        <option value="grade_level|desc">Kelas Terbesar</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-striped mb-0">
@@ -145,7 +147,7 @@ $(function(){
         if(!confirm('Yakin hapus modul?')) return;
         var id = $(this).data('id');
         $.ajax({
-            url: '/api/admin/modul/'+id,
+            url: '/api/admin/module/'+id,
             method: 'POST',
             data: { _method: 'DELETE' },
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
