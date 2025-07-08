@@ -50,7 +50,12 @@
         @php
             $dummyModules = [
                 ['title' => 'Modul CNC Dasar', 'teacher' => 'Bapak Dedi', 'writer' => 'Ibu Rina', 'modul' => 'cnc-dasar.pdf'],
-                ['title' => 'Modul Pneumatik', 'teacher' => 'Ibu Sari', 'writer' => 'Pak Andi', 'modul' => 'pneumatik.pdf']
+                ['title' => 'Modul Pneumatik', 'teacher' => 'Ibu Sari', 'writer' => 'Pak Andi', 'modul' => 'pneumatik.pdf'],
+                ['title' => 'Modul Dasar Listrik', 'teacher' => 'Pak Budi', 'writer' => 'Ibu Nina', 'modul' => 'listrik-dasar.pdf'],
+                ['title' => 'Modul Teknik Las', 'teacher' => 'Pak Slamet', 'writer' => 'Pak Doni', 'modul' => 'teknik-las.pdf'],
+                ['title' => 'Modul Gambar Teknik', 'teacher' => 'Ibu Lestari', 'writer' => 'Ibu Rini', 'modul' => 'gambar-teknik.pdf'],
+                ['title' => 'Modul PLC Dasar', 'teacher' => 'Pak Wahyu', 'writer' => 'Ibu Fitri', 'modul' => 'plc-dasar.pdf'],
+                ['title' => 'Modul Mekatronika', 'teacher' => 'Pak Agus', 'writer' => 'Ibu Dewi', 'modul' => 'mekatronika.pdf']
             ];
         @endphp
 
