@@ -34,7 +34,10 @@
         @php
             $dummyData = [
                 ['date_start' => '2025-07-08 08:00:00', 'name' => 'Workshop Laravel', 'description' => 'Pelatihan Laravel bagi pemula', 'event_id' => 1, 'slug' => 'workshop-laravel'],
-                ['date_start' => '2025-07-12 13:30:00', 'name' => 'Seminar IT', 'description' => 'Seminar teknologi informasi terbaru', 'event_id' => 2, 'slug' => 'seminar-it']
+                ['date_start' => '2025-07-12 13:30:00', 'name' => 'Seminar IT', 'description' => 'Seminar teknologi informasi terbaru', 'event_id' => 2, 'slug' => 'seminar-it'],
+                ['date_start' => '2025-07-15 09:00:00', 'name' => 'Workshop UI/UX', 'description' => 'Dasar-dasar desain antarmuka', 'event_id' => 3, 'slug' => 'workshop-uiux'],
+                ['date_start' => '2025-07-18 10:00:00', 'name' => 'Pelatihan Cybersecurity', 'description' => 'Pengenalan dasar keamanan jaringan', 'event_id' => 4, 'slug' => 'pelatihan-cybersecurity'],
+                ['date_start' => '2025-07-22 14:00:00', 'name' => 'Expo Teknologi SMK', 'description' => 'Pameran hasil karya siswa jurusan teknologi', 'event_id' => 5, 'slug' => 'expo-teknologi-smk']
             ];
         @endphp
 
