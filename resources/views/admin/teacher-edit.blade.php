@@ -7,53 +7,63 @@
             ['label' => 'Guru'],
         ]
     ])
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h4 class="mb-0">Edit Data Guru / Staff</h4>
-            </div>
-            <div class="card-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
-                    {{-- Foto --}}
-                    <div class="mb-3 text-center">
-                        <img src="{{ asset('images/placeholder.webp') }}" alt="Foto Guru" class="rounded-circle mb-2" width="120" height="120">
-                        <div>
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">Edit Data Guru / Staff</h4>
+                </div>
+                <div class="card-body">
+                    <form id="edit-form" action="{{ route('api.admin.teacher.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
                             <label for="photo" class="form-label">Ganti Foto</label>
                             <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
+                            @if($teacher->photo)
+                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 200px;">
+                            @endif
                         </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $teacher->name) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Jabatan</label>
+                            <select class="form-select" id="position" name="position" required>
+                                <option value="" disabled selected>Pilih Jabatan</option>
+                                <option value="0|Kepala Sekolah" {{ old('type', $teacher->priority) ==0? 'selected':'' }}>Kepala Sekolah</option>
+                                <option value="1|Wakil Kepala Sekolah" {{ old('type', $teacher->priority) ==1? 'selected':'' }}>Wakil Kepala Sekolah</option>
+                                <option value="2|Guru" {{ old('type', $teacher->priority) ==2? 'selected':'' }}>Guru</option>
+                                <option value="3|Staff" {{ old('type', $teacher->priority) ==3? 'selected':'' }}>Staff</option>
+                                <option value="4|Lainnya" {{ old('type', $teacher->priority) ==4? 'selected':'' }}>Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nip" class="form-label">NIP</label>
+                            <input type="text" class="form-control" id="nip" name="nip" value="{{ old('nip', $teacher->nip) }}" placeholder="Masukkan NIP (opsional)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Mata Pelajaran</label>
+                            <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject', $teacher->subject) }}" placeholder="Contoh: Matematika, IPA, dll" required>
+                        </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{{ route('admin.teacher.index') }}" class="btn btn-outline-secondary">Batal</a>
+                        <button type="button" id="save" class="btn btn-primary">Simpan Perubahan</button>
                     </div>
-
-                    {{-- Nama --}}
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="name" name="name" value="Nama Guru Contoh" required>
-                    </div>
-
-                    {{-- Jabatan --}}
-                    <div class="mb-3">
-                        <label for="position" class="form-label">Jabatan</label>
-                        <select class="form-select" id="position" name="position" required>
-                            <option value="">Pilih Jabatan</option>
-                            <option value="Guru" selected>Guru</option>
-                            <option value="Staff TU">Staff TU</option>
-                            <option value="Kepala Sekolah">Kepala Sekolah</option>
-                            <option value="Wakil Kepala Sekolah">Wakil Kepala Sekolah</option>
-                        </select>
-                    </div>
-
-                    {{-- Tombol --}}
-                    <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-secondary">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/edit.js') }}"></script>
+<script>
+    $(function() {
+        $('#save').on('click', saveData);
+    });
+</script>
 @endsection

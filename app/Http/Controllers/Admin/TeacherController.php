@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
@@ -17,8 +18,10 @@ class TeacherController extends Controller
         return view('admin.teacher-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.teacher-edit');
+        $teacher = Teacher::findOrFail($id);
+
+        return view('admin.teacher-edit', compact('teacher'));
     }
 }
