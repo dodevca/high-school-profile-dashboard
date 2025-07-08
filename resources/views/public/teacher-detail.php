@@ -4,77 +4,40 @@
 @extends('layouts.app')
 
 @section('main')
-<section class="team py-5">
+<section class="team-detail py-5">
     <div class="container">
-        <div class="row mb-4">
-            <div class="col-lg-12 d-flex justify-content-center">
-                <ul class="nav nav-pills gap-2" id="portfolio-filters">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-filter="*" href="#">Semua</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-app" href="#">Lorem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-card" href="#">Ipsum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-web" href="#">Dolor</a>
-                    </li>
-                </ul>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold">Walter White</h2>
+                <p class="text-muted mb-3">Chief Executive Officer</p>
+                <div class="d-flex justify-content-center gap-3 mb-3">
+                    <a href="#" class="text-primary fs-4"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-primary fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-primary fs-4"><i class="bi bi-linkedin"></i></a>
+                </div>
             </div>
         </div>
 
-        <div class="row portfolio-container g-4">
-            @php
-                $teams = [
-                    ['name' => 'Walter White', 'role' => 'Chief Executive Officer', 'filter' => 'filter-app'],
-                    ['name' => 'Sarah Jhinson', 'role' => 'Product Manager', 'filter' => 'filter-web'],
-                    ['name' => 'William Anderson', 'role' => 'CTO', 'filter' => 'filter-card'],
-                ];
-            @endphp
-
-            @for ($i = 0; $i < 3; $i++)
-                @foreach ($teams as $member)
-                    <div class="col-lg-4 col-md-6 portfolio-item {{ $member['filter'] }}">
-                        <div class="card h-100 shadow-sm border-0 rounded">
-                            <img src="{{ asset('images/placeholder.webp') }}" alt="Foto {{ $member['name'] }}" class="card-img-top rounded-top" style="aspect-ratio: 4 / 3; object-fit: cover;">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ $member['name'] }}</h5>
-                                <p class="text-muted">{{ $member['role'] }}</p>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, dicta.
-                                </p>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a href="#" class="text-primary"><i class="bi bi-twitter"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-facebook"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-instagram"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endfor
-        </div>
-    </div>
-</section>
-
-@section('beforeFooter')
-<section class="py-5">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
-            <a href="#" class="btn btn-primary rounded-pill">
-                <i class="bi bi-chevron-compact-left me-2"></i>Sebelumnya
-            </a>
-            <a href="#" class="btn btn-primary rounded-pill">
-                Selanjutnya<i class="bi bi-chevron-compact-right ms-2"></i>
-            </a>
-        </div>
-        <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
-            <h5 class="mb-0">Visi dan Misi</h5>
-            <span class="bg-secondary rounded-circle d-inline-block" style="width: 10px; height: 10px;"></span>
-            <h5 class="mb-0">Sarana Prasarana</h5>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <img src="{{ asset('images/placeholder.webp') }}" alt="Foto Walter White" class="img-fluid rounded shadow" style="aspect-ratio: 4 / 3; object-fit: cover;">
+            </div>
+            <div class="col-lg-6">
+                <div class="ps-lg-4 mt-4 mt-lg-0">
+                    <h4 class="fw-semibold">Tentang</h4>
+                    <p>
+                        Walter White adalah seorang pemimpin visioner yang telah memimpin perusahaan kami ke arah kesuksesan global. 
+                        Dengan pengalaman lebih dari 20 tahun di industri, beliau dikenal atas inovasi, ketegasan, dan dedikasi tinggi.
+                    </p>
+                    <h5 class="mt-4">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>Email:</strong> walter.white@example.com</li>
+                        <li><strong>Telepon:</strong> +62 812-3456-7890</li>
+                        <li><strong>Alamat:</strong> Jl. Contoh No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>

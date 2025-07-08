@@ -4,71 +4,48 @@
 @extends('layouts.app')
 
 @section('main')
-<section class="navigation pb-0">
+<section class="py-5">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between gap-3 rounded shadow p-4">
-            <h2 class="h4 mb-0">
-                Hasil dari: <strong>Prestasi Juara Sains</strong>
-            </h2>
-            <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-3 w-100">
-                <div class="dropdown w-100 order-2 order-lg-1">
-                    <button class="btn btn-outline-secondary dropdown-toggle rounded w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-funnel me-2"></i>Terbaru
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Terbaru</a></li>
-                        <li><a class="dropdown-item" href="#">Terlama</a></li>
-                    </ul>
-                </div>
-                <div class="search-form w-100 order-1 order-lg-2">
-                    <form class="d-flex border border-secondary rounded" method="get" action="#">
-                        <input type="text" id="search" name="q" class="form-control border-0" placeholder="Cari disini ..." value="Prestasi Juara Sains">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="team py-5">
-    <div class="container">
-        <div class="row">
-            @for ($i = 0; $i < 6; $i++)
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-4">
-                <div class="member rounded w-100 shadow-sm p-3">
-                    <div class="achievement-details-slider swiper mb-3">
-                        <div class="swiper-wrapper align-items-center">
-                            @for ($j = 0; $j < 2; $j++)
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('images/placeholder.webp') }}" alt="Prestasi Siswa {{ $i + 1 }} - {{ $j + 1 }}" class="w-100 rounded" style="aspect-ratio: 4 / 3; object-fit: cover;">
-                                </div>
-                            @endfor
-                        </div>
-                        <div class="swiper-pagination d-flex justify-content-center mt-2"></div>
+        <div class="row g-5 align-items-start">
+            <div class="col-lg-6">
+                <!-- Swiper Carousel / Placeholder -->
+                <div class="swiper mb-3">
+                    <div class="swiper-wrapper">
+                        @for ($i = 1; $i <= 3; $i++)
+                            <div class="swiper-slide">
+                                <img src="{{ asset('images/placeholder.webp') }}" alt="Prestasi Gambar {{ $i }}" class="img-fluid rounded shadow-sm w-100" style="aspect-ratio: 4/3; object-fit: cover;">
+                            </div>
+                        @endfor
                     </div>
-                    <h4>Nama Siswa {{ $i + 1 }}</h4>
-                    <span>Jurusan {{ ['RPL', 'TKJ', 'AKL'][$i % 3] }}</span>
-                    <ul class="list-unstyled mt-3">
-                        <li class="fw-bold">Lomba Sains</li>
-                        <li class="fw-bold">Nasional</li>
-                        <li class="fw-bold">202{{ $i }}</li>
-                    </ul>
+                    <div class="swiper-pagination mt-3"></div>
                 </div>
             </div>
-            @endfor
+
+            <div class="col-lg-6">
+                <h2 class="mb-1">Walter White</h2>
+                <p class="text-muted">Rekayasa Perangkat Lunak</p>
+                <ul class="list-unstyled mb-3">
+                    <li><strong>Jenis Lomba:</strong> Lomba Sains</li>
+                    <li><strong>Tingkat:</strong> Nasional</li>
+                    <li><strong>Tahun:</strong> 2024</li>
+                </ul>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit similique labore libero perspiciatis perferendis nesciunt corporis quidem, ullam totam amet.
+                </p>
+                <div class="d-flex gap-2 mt-3">
+                    <a href="#" class="text-primary"><i class="bi bi-twitter fs-5"></i></a>
+                    <a href="#" class="text-primary"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="text-primary"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>
+                </div>
+            </div>
         </div>
 
-        <!-- Dummy pagination -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center mt-4">
-                <li class="page-item disabled"><a class="page-link" href="#">Sebelumnya</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Berikutnya</a></li>
-            </ul>
-        </nav>
+        <div class="mt-5 text-center">
+            <a href="#" class="btn btn-outline-primary rounded-pill">
+                <i class="bi bi-chevron-left me-2"></i>Kembali ke Daftar Prestasi
+            </a>
+        </div>
     </div>
 </section>
 @endsection
