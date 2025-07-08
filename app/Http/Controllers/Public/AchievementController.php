@@ -9,6 +9,6 @@ class AchievementController extends Controller
 {
     public function index()
     {
-        return view('public.teacher');
+        return view('public.achievement');
     }
 }

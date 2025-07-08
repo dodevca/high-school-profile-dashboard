@@ -1,81 +1,71 @@
 @extends('public')
 
 @section('content')
-@extends('layouts.app')
-
-@section('main')
-<section class="team py-5">
+<section id="team" class="team py-5">
     <div class="container">
+        <!-- Filter Buttons -->
         <div class="row mb-4">
             <div class="col-lg-12 d-flex justify-content-center">
-                <ul class="nav nav-pills gap-2" id="portfolio-filters">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-filter="*" href="#">Semua</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-app" href="#">Lorem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-card" href="#">Ipsum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-filter=".filter-web" href="#">Dolor</a>
-                    </li>
+                <ul id="portfolio-flters" class="list-unstyled d-flex gap-3">
+                    <li data-filter="*" class="filter-active btn btn-outline-primary">Semua</li>
+                    <li data-filter=".filter-app" class="btn btn-outline-primary">Lorem</li>
+                    <li data-filter=".filter-card" class="btn btn-outline-primary">Ipsum</li>
+                    <li data-filter=".filter-web" class="btn btn-outline-primary">Dolor</li>
                 </ul>
             </div>
         </div>
 
-        <div class="row portfolio-container g-4">
-            @php
-                $teams = [
-                    ['name' => 'Walter White', 'role' => 'Chief Executive Officer', 'filter' => 'filter-app'],
-                    ['name' => 'Sarah Jhinson', 'role' => 'Product Manager', 'filter' => 'filter-web'],
-                    ['name' => 'William Anderson', 'role' => 'CTO', 'filter' => 'filter-card'],
-                ];
-            @endphp
-
-            @for ($i = 0; $i < 3; $i++)
-                @foreach ($teams as $member)
-                    <div class="col-lg-4 col-md-6 portfolio-item {{ $member['filter'] }}">
-                        <div class="card h-100 shadow-sm border-0 rounded">
-                            <img src="{{ asset('images/placeholder.webp') }}" alt="Foto {{ $member['name'] }}" class="card-img-top rounded-top" style="aspect-ratio: 4 / 3; object-fit: cover;">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ $member['name'] }}</h5>
-                                <p class="text-muted">{{ $member['role'] }}</p>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, dicta.
-                                </p>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a href="#" class="text-primary"><i class="bi bi-twitter"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-facebook"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-instagram"></i></a>
-                                    <a href="#" class="text-primary"><i class="bi bi-linkedin"></i></a>
-                                </div>
+        <!-- Team Members -->
+        <div class="row portfolio-container">
+            @for ($i = 0; $i < 9; $i++)
+                @php
+                    $filters = ['filter-app', 'filter-web', 'filter-card'];
+                    $names = ['Walter White', 'Sarah Jhinson', 'William Anderson'];
+                    $roles = ['Chief Executive Officer', 'Product Manager', 'CTO'];
+                    $descriptions = [
+                        'Magni qui quod omnis unde et eos fuga et exercitationem.',
+                        'Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus.',
+                        'Voluptas necessitatibus occaecati quia. Earum totam consequuntur.',
+                    ];
+                    $index = $i % 3;
+                @endphp
+                <div class="col-lg-4 col-md-6 portfolio-item {{ $filters[$index] }}">
+                    <div class="card member portfolio-wrap h-100 shadow rounded">
+                        <img src="{{ asset('images/placeholder.webp') }}" class="card-img-top" alt="Team Member">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $names[$index] }}</h5>
+                            <p class="text-muted">{{ $roles[$index] }}</p>
+                            <p class="card-text">{{ $descriptions[$index] }}</p>
+                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                <a href="#" class="text-primary"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
             @endfor
         </div>
     </div>
 </section>
-
-@section('beforeFooter')
-<section class="py-5">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
-            <a href="#" class="btn btn-primary rounded-pill">
-                <i class="bi bi-chevron-compact-left me-2"></i>Sebelumnya
+<section>
+    <div class="container py-5">
+        <div class="d-flex align-items-center justify-content-center gap-3">
+            <a href="#" class="btn btn-primary rounded-5">
+                <i class="bi bi-chevron-compact-left me-2"></i> Sebelumnya
             </a>
-            <a href="#" class="btn btn-primary rounded-pill">
-                Selanjutnya<i class="bi bi-chevron-compact-right ms-2"></i>
+            <a href="#" class="btn btn-primary rounded-5">
+                Selanjutnya <i class="bi bi-chevron-compact-right ms-2"></i>
             </a>
         </div>
+
         <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
-            <h5 class="mb-0">Visi dan Misi</h5>
-            <span class="bg-secondary rounded-circle d-inline-block" style="width: 10px; height: 10px;"></span>
+            <h5 class="mb-0 text-end">Visi dan Misi</h5>
+            <span class="bg-secondary" style="width: 2px; height: 24px;"></span>
             <h5 class="mb-0">Sarana Prasarana</h5>
         </div>
     </div>
 </section>
+
 @endsection

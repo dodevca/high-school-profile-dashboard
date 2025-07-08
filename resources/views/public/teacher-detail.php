@@ -1,9 +1,9 @@
 @extends('public')
 
 @section('content')
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
-@section('main')
+@section('main') -->
 <section class="py-5">
     <div class="container">
         <div class="row g-5 align-items-center">
