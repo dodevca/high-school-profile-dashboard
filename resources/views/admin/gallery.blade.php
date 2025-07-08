@@ -7,7 +7,6 @@
             ['label' => 'Galeri'],
         ]
     ])
-
     <div class="row mb-4">
         <div class="col-12">
             <div class="d-flex align-items-center justify-content-end mb-3">
@@ -17,17 +16,17 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
                     <input id="searchInput" name="search" type="search" class="form-control" placeholder="Cari album...">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center">
                     <select id="sortSelect" class="form-select">
+                        <option value="created_at|desc">Terbaru</option>
+                        <option value="created_at|asc">Terlama</option>
                         <option value="title|asc">A-Z</option>
                         <option value="title|desc">Z-A</option>
-                        <option value="published_at|desc">Terbaru</option>
-                        <option value="published_at|asc">Terlama</option>
                     </select>
                 </div>
             </div>
@@ -65,13 +64,13 @@ $(function(){
                 res.data.forEach(function(item){
                     var card = `
                         <div class="col-lg-12 mb-3">
-                            <div class="card shadow-sm">
+                            <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
-                                    <a href="/admin/galeri/${item.id}" class="d-flex align-items-center text-decoration-none">
-                                        <img src="/storage/${item.thumbnail}" class="rounded me-3" width="72" height="72">
+                                    <a href="/galeri/${item.id}" class="d-flex align-items-center text-decoration-none">
+                                        <img src="/storage/${item.thumbnail}" class="rounded me-3" width="72" height="72" style="object-fit: cover;">
                                         <div>
                                             <h5 class="mb-1">${item.title}</h5>
-                                            <div class="text-muted small d-flex gap-3">
+                                            <div class="text-muted small d-flex align-items-center gap-2">
                                                 <span>${item.created_at}</span>
                                                 <span class="badge text-bg-secondary">${item.totalImages} gambar</span>
                                             </div>

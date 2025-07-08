@@ -7,9 +7,9 @@
             ['label' => 'Profil'],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-12">
-            <div class="card mb-4 shadow-sm">
+            <div class="card mb-3">
                 <div class="card-body d-flex align-items-center gap-3">
                     <div>
                     <h4 class="mb-1">{{ $user->name }}</h4>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-body">
                     <p class="text-muted mb-3">
                     Masukkan password sekarang dan password baru Anda.  

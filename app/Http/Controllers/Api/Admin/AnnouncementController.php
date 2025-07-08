@@ -74,9 +74,9 @@ class AnnouncementController extends Controller
 
             $data['active'] = true;
 
-            if($request->hasFile('thumbnail'))
+            if($request->hasFile('image'))
                 $data['image'] = $request->file('image')
-                    ->store('announcements', 'public');
+                    ->store('announcement', 'public');
 
             $announcement = Announcement::create($data);
 
@@ -86,7 +86,7 @@ class AnnouncementController extends Controller
             ], 201);
         } catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
-                'error' => 'Data pengumumans tidak ditemukan.'
+                'error' => 'Data pengumuman tidak ditemukan.'
             ], 404);
         } catch(ValidationException $e) {
             return response()->json([
@@ -131,7 +131,7 @@ class AnnouncementController extends Controller
                     Storage::disk('public')->delete($announcement->image);
                     
                 $data['image'] = $request->file('image')
-                    ->store('announcements', 'public');
+                    ->store('announcement', 'public');
             }
 
             $announcement->update($data);

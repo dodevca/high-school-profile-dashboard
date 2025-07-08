@@ -8,9 +8,9 @@
             ['label' => $event->title],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title mb-0">Edit Agenda</h4>
                 </div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" rows="6" required>{{ old('description', $event->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="10" required>{{ old('description', $event->description) }}</textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -42,12 +42,19 @@
                             <label for="location" class="form-label">Lokasi</label>
                             <input type="text" class="form-control" id="location" name="location" value="{{ old('location', $event->location) }}" required>
                         </div>
+                        @if($event->image)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $event->image) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 280px;">
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="image" class="form-label">Unggah Gambar Lampiran Baru</label>
                             <input class="form-control" type="file" id="image" name="image" accept="image/*">
-                            @if($event->image)
-                                <img src="{{ asset('storage/' . $event->image) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 200px;">
-                            @endif
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="type" class="form-label">Tipe Agenda</label>

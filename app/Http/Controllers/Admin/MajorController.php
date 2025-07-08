@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Major;
 
 class MajorController extends Controller
 {
@@ -17,8 +18,10 @@ class MajorController extends Controller
         return view('admin.major-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.major-edit');
+        $major = Major::findOrFail($id);
+
+        return view('admin.major-edit', compact('major'));
     }
 }

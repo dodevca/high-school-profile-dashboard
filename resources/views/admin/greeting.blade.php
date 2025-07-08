@@ -7,11 +7,15 @@
             ['label' => 'Sambutan'],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-12">
             <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title mb-0">Sambutan</h4>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h4 class="mb-4">Sambutan</h4>
                     <form id="edit-form" action="{{ route('api.admin.greeting.update', $greeting->id) }}" method="PUT" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -29,10 +33,11 @@
                             </div>
                             <div class="col-12">
                                 <label for="content" class="form-label">Sambutan</label>
-                                <textarea name="content" id="content" class="form-control" rows="10" required>{!! old('content', $greeting->content) !!}</textarea>
+                                <textarea name="content" id="content" class="form-control" rows="16" required>{!! old('content', $greeting->content) !!}</textarea>
                             </div>
                         </div>
-                        <div class="mt-4 text-end">
+                        <div class="mt-3 text-end">
+                            <button type="button" onclick="location.reload()" class="btn btn-outline-danger me-2">Batal</button>
                             <button type="button" class="btn btn-primary" id="save">Simpan</button>
                         </div>
                     </form>

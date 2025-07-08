@@ -7,11 +7,15 @@
             ['label' => 'Informasi Sekolah'],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-12">
             <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title mb-0">Informasi Sekolah</h4>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h4 class="mb-4">Informasi Sekolah</h4>
                     <form id="edit-form" action="{{ route('api.admin.information.update', $information->id) }}" method="PUT" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -34,7 +38,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="address" class="form-label">Alamat</label>
-                                <textarea name="address" id="address" class="form-control" rows="3" required>{{ old('address', $information->address) }}</textarea>
+                                <textarea name="address" id="address" class="form-control" rows="4" required>{{ old('address', $information->address) }}</textarea>
                             </div>
                             <div class="col-md-4">
                                 <label for="district" class="form-label">Kecamatan</label>
@@ -69,14 +73,15 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="vision" class="form-label">Visi</label>
-                                <textarea name="vision" id="vision" class="form-control" rows="2" required>{{ old('vision', $information->vision) }}</textarea>
+                                <textarea name="vision" id="vision" class="form-control" rows="4" required>{{ old('vision', $information->vision) }}</textarea>
                             </div>
                             <div class="col-12">
                                 <label for="mission" class="form-label">Misi</label>
-                                <textarea name="mission" id="mission" class="form-control" rows="4" required>{{ old('mission', $information->mission) }}</textarea>
+                                <textarea name="mission" id="mission" class="form-control" rows="10" required>{{ old('mission', $information->mission) }}</textarea>
                             </div>
                         </div>
-                        <div class="mt-4 text-end">
+                        <div class="mt-3 text-end">
+                            <button type="button" onclick="location.reload()" class="btn btn-outline-danger me-2">Batal</button>
                             <button type="button" class="btn btn-primary" id="save">Simpan</button>
                         </div>
                     </form>

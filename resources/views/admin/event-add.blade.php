@@ -5,12 +5,12 @@
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
             ['label' => 'Agenda', 'url' => route('admin.event.index')],
-            ['label' => 'Buat Agenda']
+            ['label' => 'Buat']
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title mb-0">Buat Agenda Baru</h4>
                 </div>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control"  id="description" name="description" rows="6" placeholder="Tulis deskripsi agenda..." required></textarea>
+                            <textarea class="form-control"  id="description" name="description" rows="10" placeholder="Tulis deskripsi agenda..." required></textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -44,11 +44,16 @@
                         <div class="mb-3">
                             <label for="image" class="form-label">Unggah Gambar Lampiran</label>
                             <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="type" class="form-label">Jenis Agenda</label>
                             <select class="form-select" id="type" name="type" required>
-                                <option disabled selected>— Pilih tipe —</option>
+                                <option disabled selected>Pilih tipe</option>
                                 <option value="Internal">Internal</option>
                                 <option value="External">Eksternal</option>
                             </select>

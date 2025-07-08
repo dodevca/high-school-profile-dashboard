@@ -8,9 +8,9 @@
             ['label' => $announcement->title],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title mb-0">Edit Pengumuman</h4>
@@ -40,12 +40,19 @@
                                 Pilih jurusan terkait atau biarkan kosong untuk semua jurusan.
                             </div>
                         </div>
+                        @if($announcement->image)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $announcement->image) }}" alt="Lampiran" class="img-thumbnail" style="width: 280px;">
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="image" class="form-label">Unggah Gambar Lampiran Baru</label>
                             <input class="form-control" type="file" id="image" name="image" accept="image/*">
-                            @if($announcement->image)
-                                <img src="{{ asset('storage/' . $announcement->image) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 200px;">
-                            @endif
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
                             <a href="{{ route('admin.announcement.index') }}" class="btn btn-outline-danger">Batal</a>
@@ -59,11 +66,11 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/alert.js') }}"></script>
-<script src="{{ asset('js/edit.js') }}"></script>
-<script>
-    $(function() {
-        $('#save').on('click', saveData);
-    });
-</script>
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
+    <script>
+        $(function() {
+            $('#save').on('click', saveData);
+        });
+    </script>
 @endsection

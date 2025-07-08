@@ -5,12 +5,12 @@
         'breadcrumbs' => [
             ['label' => 'Dashboard',    'url' => route('admin.home')],
             ['label' => 'Pengumuman',   'url' => route('admin.announcement.index')],
-            ['label' => 'Buat Baru'],
+            ['label' => 'Buat'],
         ]
     ])
     <div class="row mb-4">
         <div class="col-lg-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title mb-0">Buat Pengumuman Baru</h4>
@@ -42,6 +42,11 @@
                         <div class="mb-3">
                             <label for="image" class="form-label">Lampirkan Gambar</label>
                             <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
                             <a href="{{ route('admin.announcement.index') }}" class="btn btn-outline-danger">Batal</a>
@@ -55,11 +60,11 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/alert.js') }}"></script>
-<script src="{{ asset('js/add.js') }}"></script>
-<script>
-    $(function() {
-        $('#add').on('click', addData);
-    });
-</script>
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script src="{{ asset('js/add.js') }}"></script>
+    <script>
+        $(function() {
+            $('#add').on('click', addData);
+        });
+    </script>
 @endsection

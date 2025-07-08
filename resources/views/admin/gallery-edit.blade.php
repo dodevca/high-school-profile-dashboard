@@ -24,14 +24,21 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" rows="5" required>{{ old('description', $album->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="10" required>{{ old('description', $album->description) }}</textarea>
                         </div>
+                        @if($album->thumbnail)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $album->thumbnail) }}" class="img-thumbnail" width="280px">
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="headline" class="form-label">Ganti Thumbnail</label>
                             <input class="form-control" type="file" id="headline" name="headline" accept="image/*">
-                            @if($album->thumbnail)
-                                <img src="{{ asset('storage/' . $album->thumbnail) }}" class="img-thumbnail" width="72">
-                            @endif
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Daftar Gambar</label>
@@ -51,10 +58,15 @@
                         <div class="mb-3">
                             <label for="images" class="form-label">Tambah Gambar Baru</label>
                             <input class="form-control" type="file" id="images" name="images[]" accept="image/*" multiple onchange="updateList()">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                             <ul id="file-list" class="ps-3 mt-2"></ul>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('admin.gallery.index') }}" class="btn btn-outline-secondary">Batal</a>
+                            <a href="{{ route('admin.gallery.index') }}" class="btn btn-outline-danger">Batal</a>
                             <button type="button" id="save" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>

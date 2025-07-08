@@ -73,6 +73,7 @@
                         <li><a class="text-light text-decoration-none" href="{{ route('gallery.index') }}">Galeri</a></li>
                         <li><a class="text-light text-decoration-none" href="{{ route('announcement.index') }}">Pengumuman</a></li>
                         <li><a class="text-light text-decoration-none" href="{{ route('news.index') }}">Blog</a></li>
+                        <li><a class="text-light text-decoration-none" href="{{ route('admin.home') }}">Admin</a></li>
                     </ul>
                 </div>
             </div>

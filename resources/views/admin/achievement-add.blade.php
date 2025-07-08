@@ -5,20 +5,20 @@
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
             ['label' => 'Prestasi', 'url' => route('admin.achievement.index')],
-            ['label' => 'Tambah Prestasi'],
+            ['label' => 'Tambah'],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Tambah Prestasi</h4>
+                    <h4 class="card-title mb-0">Tambah Prestasi Baru</h4>
                 </div>
                 <div class="card-body">
                     <form id="add-form" action="{{ route('api.admin.achievement.store') }}" method="POST" enctype="multipart/form-data"> @csrf {{-- Judul --}}
                         <div class="mb-3">
                             <label for="title" class="form-label">Judul Prestasi</label>
-                            <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}" required>
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Masukkan judul prestasi" required>
                         </div>
                         <div class="mb-3">
                             <label for="category" class="form-label">Kategori</label>
@@ -55,16 +55,21 @@
                             <input type="date" id="achieved_at" name="achieved_at" class="form-control" value="{{ old('achieved_at') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Deskripsi (Opsional)</label>
-                            <textarea id="description" name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <textarea id="description" name="description" class="form-control" placeholder="Tulis deskripsi prestasi..." rows="10">{{ old('description') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="photo" class="form-label">Unggah Foto</label>
                             <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 5.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('admin.achievement.index') }}" class="btn btn-outline-secondary">Batal</a>
-                            <button type="button" id="add" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('admin.achievement.index') }}" class="btn btn-outline-danger">Batal</a>
+                            <button type="button" id="add" class="btn btn-primary">Tambah</button>
                         </div>
                     </form>
                 </div>

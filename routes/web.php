@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\Admin\{
     AchievementController as ApiAdminAchievement,
     TeacherController as ApiAdminTeacher,
     GalleryController as ApiAdminGallery,
+    MajorController as ApiAdminMajor,
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
@@ -159,6 +160,7 @@ Route::middleware('api')->prefix('api/admin')->name('api.admin.')->middleware('a
     Route::apiResource('achievement', ApiAdminAchievement::class);
     Route::apiResource('teacher', ApiAdminTeacher::class);
     Route::apiResource('gallery', ApiAdminGallery::class);
+    Route::apiResource('major', ApiAdminMajor::class);
     Route::delete('gallery/{gallery}/{image}', [ApiAdminGallery::class, 'destroyImage'])->name('gallery.images.destroy');
     Route::apiResource('greeting', ApiAdminGreeting::class);
     Route::apiResource('information', ApiAdminInformation::class);
