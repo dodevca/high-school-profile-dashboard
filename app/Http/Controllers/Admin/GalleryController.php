@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 
 class GalleryController extends Controller
 {
@@ -17,13 +18,10 @@ class GalleryController extends Controller
         return view('admin.gallery-add');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.gallery-edit');
-    }
+        $album = Gallery::with('gallery_image')->findOrFail($id);
 
-    public function delete()
-    {
-        return view('admin.gallery-delete');
+        return view('admin.gallery-edit', compact('album'));
     }
 }

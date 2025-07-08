@@ -34,6 +34,8 @@ use App\Http\Controllers\Api\Admin\{
     EventController as ApiAdminEvent,
     ModuleController as ApiAdminModule,
     AchievementController as ApiAdminAchievement,
+    TeacherController as ApiAdminTeacher,
+    GalleryController as ApiAdminGallery,
     GreetingController as ApiAdminGreeting,
     InformationController as ApiAdminInformation,
 };
@@ -124,22 +126,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth') ->group(function () {
     Route::controller(AdminTeacher::class)->prefix('guru')->name('teacher.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminGallery::class)->prefix('galeri')->name('gallery.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminMajor::class)->prefix('jurusan')->name('major.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('tambah', 'add')->name('add');
-        Route::get('edit', 'edit')->name('edit');
-        // Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
+        Route::get('{id}', 'edit')->whereNumber('id')->name('edit');
     });
 
     Route::controller(AdminGreeting::class)->prefix('sambutan')->name('greeting.')->group(function () {
@@ -158,6 +157,9 @@ Route::middleware('api')->prefix('api/admin')->name('api.admin.')->middleware('a
     Route::apiResource('event', ApiAdminEvent::class);
     Route::apiResource('module', ApiAdminModule::class);
     Route::apiResource('achievement', ApiAdminAchievement::class);
+    Route::apiResource('teacher', ApiAdminTeacher::class);
+    Route::apiResource('gallery', ApiAdminGallery::class);
+    Route::delete('gallery/{gallery}/{image}', [ApiAdminGallery::class, 'destroyImage'])->name('gallery.images.destroy');
     Route::apiResource('greeting', ApiAdminGreeting::class);
     Route::apiResource('information', ApiAdminInformation::class);
 });

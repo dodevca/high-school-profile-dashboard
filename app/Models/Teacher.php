@@ -20,9 +20,9 @@ class Teacher extends Model
         'name',
         'position',
         'nip',
+        'priority',
         'photo',
         'subject',
-        'description',
     ];
 
     /**
