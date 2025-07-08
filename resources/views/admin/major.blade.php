@@ -66,18 +66,14 @@ $(function(){
                         <div class="col-lg-12 mb-3">
                             <div class="card shadow-sm">
                                 <div class="card-body d-flex align-items-center justify-content-between">
-                                    <a href="/admin/jurusan/${item.id}" class="d-flex align-items-center text-decoration-none">
-                                        <img src="${item.image_url || '/images/placeholder.webp'}" class="rounded me-3" width="72" height="72" alt="Jurusan image">
-                                        <div>
-                                            <h5 class="mb-1">${item.name}</h5>
-                                            <div class="text-muted small d-flex flex-wrap gap-3">
-                                                <span><i class="bi bi-calendar me-1"></i>${item.opened_at}</span>
-                                                <span><i class="bi bi-people me-1"></i>${item.student_count} Siswa</span>
-                                            </div>
+                                    <div>
+                                        <h5 class="mb-1">${item.name}</h5>
+                                        <div class="text-muted small d-flex flex-wrap gap-3">
+                                            <span>${item.created_at}</span>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-2">
-                                        <a href="/admin/jurusan/${item.id}/edit" class="btn btn-outline-primary btn-sm"><i class="bi bi-pen"></i> Edit</a>
+                                        <a href="/admin/jurusan/${item.id}" class="btn btn-outline-warning btn-sm"><i class="bi bi-pen"></i> Edit</a>
                                         <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${item.id}"><i class="bi bi-trash"></i> Hapus</button>
                                     </div>
                                 </div>
