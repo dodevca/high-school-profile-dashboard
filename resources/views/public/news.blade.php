@@ -6,7 +6,7 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between gap-3 rounded shadow p-4">
             <h2 class="h4 mb-0">
-                {{ request()->has('q') && request('q') != '' ? 'Hasil dari : ' . ucwords(request('q')) : 'Blog SMK N 2 Kupang' }}
+                {{ request()->has('q') && request('q') != '' ? 'Hasil dari : ' . ucwords(request('q')) : 'Blog SMK N 1 SEYEGAN' }}
             </h2>
             <div class="d-flex flex-wrap flex-lg-nowrap align-items-center gap-3">
                 <div class="dropdown w-100 order-2 order-lg-1">
