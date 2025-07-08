@@ -70,7 +70,7 @@ class GalleryController extends Controller
 
             if($request->hasFile('thumbnail'))
                 $data['thumbnail'] = $request->file('thumbnail')
-                    ->store('thumbnail', 'public');
+                    ->store('thumbnails', 'public');
 
             $gallery = Gallery::create([
                 'title'        => $data['title'],
@@ -138,7 +138,7 @@ class GalleryController extends Controller
                     Storage::disk('public')->delete($gallery->thumbnail);
                 
                 $data['thumbnail'] = $request->file('thumbnail')
-                    ->store('thumbnail', 'public');
+                    ->store('thumbnails', 'public');
             }
 
             $gallery->title       = $data['title'];

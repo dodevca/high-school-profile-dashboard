@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
-                    <input id="searchInput" type="search" class="form-control" placeholder="Cari prestasi..." aria-label="Search">
+                    <input id="searchInput" type="search" class="form-control" placeholder="Cari prestasi atau nama..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center mt-3 mt-md-0">
@@ -33,7 +33,7 @@
                         <option value="">Semua Tingkat</option>
                         <option value="Sekolah">Sekolah</option>
                         <option value="Kecamatan">Kecamatan</option>
-                        <option value="Kabupaten">Kabupaten</option>
+                        <option value="Kabupaten/Kota">Kabupaten/Kota</option>
                         <option value="Provinsi">Provinsi</option>
                         <option value="Nasional">Nasional</option>
                         <option value="Internasional">Internasional</option>
