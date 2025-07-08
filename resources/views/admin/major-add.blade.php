@@ -5,10 +5,10 @@
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
             ['label' => 'Jurusan', 'url' => route('admin.major.index')],
-            ['label' => 'Tambah Jurusan'],
+            ['label' => 'Tambah'],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -29,11 +29,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Isi deskripsi jurusan" rows="6" required></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Isi deskripsi jurusan" rows="10" required></textarea>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
                             <a href="{{ route('admin.event.index') }}" class="btn btn-outline-danger">Batal</a>
-                            <button type="button" class="btn btn-primary" id="add">Tambahkan</button>
+                            <button type="button" class="btn btn-primary" id="add">Tambah</button>
                         </div>
                     </form>
                 </div>

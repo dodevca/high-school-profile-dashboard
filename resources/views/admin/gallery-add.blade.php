@@ -26,15 +26,25 @@
 
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" rows="6" placeholder="Tulis deskripsi album..." required></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="10" placeholder="Tulis deskripsi album..." required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="thumbnail" class="form-label">Thumbnail</label>
                             <input class="form-control" type="file" id="thumbnail" name="thumbnail" accept="image/jpeg,image/gif,image/png,image/jpg,image/webp" required>
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="images" class="form-label">Isi Album</label>
                             <input class="form-control" type="file" id="images" name="images[]" accept="image/jpeg,image/gif,image/png,image/jpg,image/webp" multiple required onchange="updateList()">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                             <ul id="file-list" class="ps-3 mt-2"></ul>
                         </div>
                         <div class="d-flex justify-content-end gap-2">

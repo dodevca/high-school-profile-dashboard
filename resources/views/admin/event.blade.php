@@ -11,18 +11,18 @@
         <div class="col-12">
             <div class="d-flex align-items-center justify-content-end mb-3">
                 <a href="{{ route('admin.event.add') }}" class="btn btn-primary">
-                    <i class="bx bx-plus me-1"></i>Tambah baru
+                    <i class="bx bx-plus me-1"></i>Buat agenda
                 </a>
             </div>
         </div>
         <div class="col-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
                     <input id="searchInput" type="search" class="form-control" placeholder="Cari agenda..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center justify-content-end">
-                    <select id="typeFilter" class="form-select me-3">
+                    <select id="typeFilter" class="form-select me-2">
                         <option value="">Semua Jenis</option>
                         <option value="Internal">Internal</option>
                         <option value="External">Eksternal</option>
@@ -81,8 +81,8 @@ $(function(){
                                     <div class="d-flex flex-column">\
                                         <a href="/agenda/' + item.id + '" class="text-dark text-decoration-none">\
                                                 <h5 class="mb-2">'+ item.title +'</h5>\
-                                                <div class="badge bg-primary text-light mb-2">'+ item.start_time +'</div>\
-                                                <div class="badge bg-info text-light mb-2">'+ item.end_time +'</div>\
+                                                <div class="badge bg-info text-light mb-2">'+ item.start_time +'</div>\
+                                                <div class="badge bg-primary text-light mb-2">'+ item.end_time +'</div>\
                                                 <div class="d-flex gap-3 text-muted small">\
                                                 <div class="d-flex align-items-center gap-2">\
                                                     <div>'+ item.created_at +'</div>\

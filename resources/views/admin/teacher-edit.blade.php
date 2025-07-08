@@ -4,7 +4,8 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Guru'],
+            ['label' => 'Guru dan Staff', 'url' => route('admin.teacher.index')],
+            ['label' => $teacher->name],
         ]
     ])
     <div class="row mb-4">
@@ -17,12 +18,19 @@
                     <form id="edit-form" action="{{ route('api.admin.teacher.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                        @if($teacher->photo)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="Lampiran" class="img-thumbnail" style="width: 280px;">
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="photo" class="form-label">Ganti Foto</label>
                             <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
-                            @if($teacher->photo)
-                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="Lampiran" class="img-thumbnail" style="max-width: 200px;">
-                            @endif
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 1.0 MB.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama Lengkap</label>
@@ -48,8 +56,8 @@
                             <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject', $teacher->subject) }}" placeholder="Contoh: Matematika, IPA, dll" required>
                         </div>
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="{{ route('admin.teacher.index') }}" class="btn btn-outline-secondary">Batal</a>
-                        <button type="button" id="save" class="btn btn-primary">Simpan Perubahan</button>
+                        <a href="{{ route('admin.teacher.index') }}" class="btn btn-outline-danger">Batal</a>
+                        <button type="button" id="save" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

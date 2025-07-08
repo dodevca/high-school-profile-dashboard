@@ -16,17 +16,17 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
                     <input id="searchInput" name="search" type="search" class="form-control" placeholder="Cari jurusan...">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center">
                     <select id="sortSelect" class="form-select">
-                        <option value="name|asc">A-Z</option>
-                        <option value="name|desc">Z-A</option>
                         <option value="created_at|desc">Terbaru</option>
                         <option value="created_at|asc">Terlama</option>
+                        <option value="name|asc">A-Z</option>
+                        <option value="name|desc">Z-A</option>
                     </select>
                 </div>
             </div>
@@ -64,7 +64,7 @@ $(function(){
                 res.data.forEach(function(item){
                     var card = `
                         <div class="col-lg-12 mb-3">
-                            <div class="card shadow-sm">
+                            <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h5 class="mb-1">${item.name}</h5>
@@ -73,8 +73,8 @@ $(function(){
                                         </div>
                                     </div>
                                     <div class="d-flex gap-2">
-                                        <a href="/admin/jurusan/${item.id}" class="btn btn-outline-warning btn-sm"><i class="bi bi-pen"></i> Edit</a>
-                                        <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${item.id}"><i class="bi bi-trash"></i> Hapus</button>
+                                        <a href="/admin/jurusan/${item.id}" class="btn btn-outline-warning btn-sm"><i class="bx bx-edit-alt me-2"></i>Edit</a>
+                                        <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${item.id}"><i class="bx bx-trash"></i></button>
                                     </div>
                                 </div>
                             </div>

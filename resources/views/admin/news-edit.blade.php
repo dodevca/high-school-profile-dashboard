@@ -25,15 +25,22 @@
                             <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $news->title) }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="form-label">Isi Berita</label>
+                            <label for="content" class="form-label">Konten</label>
                             <textarea class="form-control" id="content" name="content" rows="16">{{ old('content', $news->content) }}</textarea>
                         </div>
+                        @if($news->thumbnail)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="Thumbnail" class="img-thumbnail" width="280">
+                            </div>
+                        @endif
                         <div class="mb-3">
-                            <label for="thumbnail" class="form-label">Unggah Thumbnail Baru</label>
-                            <input class="form-control" type="file" id="thumbnail" name="thumbnail">
-                            @if($news->thumbnail)
-                                <img src="{{ asset('storage/' . $news->thumbnail) }}" alt="Logo" class="mt-2" width="120">
-                            @endif
+                            <label for="thumbnail" class="form-label">Unggah Gambar Baru</label>
+                            <input class="form-control" type="file" accept="image/*" id="thumbnail" name="thumbnail">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 2.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-end gap-2">
                             <a href="{{ route('admin.news.index') }}" class="btn btn-outline-danger">Batal</a>

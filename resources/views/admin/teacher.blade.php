@@ -16,13 +16,13 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
-                    <input id="searchInput" type="search" class="form-control" placeholder="Cari guru/staff..." aria-label="Search">
+                    <input id="searchInput" type="search" class="form-control" placeholder="Cari nama atau pelajaran..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center justify-content-end">
-                    <select class="form-select me-3" id="priorityFilter">
+                    <select class="form-select me-2" id="priorityFilter">
                         <option value="">Semua Jabatan</option>
                         <option value="0">Kepala Sekolah</option>
                         <option value="1">Wakil Kepala Sekolah</option>
@@ -31,6 +31,8 @@
                         <option value="4">Lainnya</option>
                     </select>
                     <select class="form-select" id="sortSelect">
+                        <option value="created_at|desc">Terbaru</option>
+                        <option value="created_at|asc">Terlama</option>
                         <option value="priority|desc">Jabatan &uarr;</option>
                         <option value="priority|asc">Jabatan &darr;</option>
                         <option value="name|asc">A-Z</option>
@@ -40,7 +42,7 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="row" id="teacherContainer">
+            <div class="row g-3" id="teacherContainer">
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center" id="pagination"></ul>
@@ -76,18 +78,20 @@
                     );
                 } else {
                     $.each(res.data, function(_, t) {
-                        $row.append(`<div class="col-md-6 col-lg-4 mb-4">
+                        $row.append(`<div class="col-md-6 col-lg-4">
                             <div class="card h-100">
-                                <div class="card-body d-flex flex-column align-items-center text-center">
-                                <img src="/storage/${t.photo}" class="rounded-circle mb-3" width="100" height="100">
-                                <h5 class="card-title mb-1">${t.name}</h5>
-                                <small class="text-muted mb-1">${t.nip}</small>
-                                <p class="text-muted mb-1">${t.position=='Lainnya'?'-':t.position}</p>
-                                <p class="text-muted mb-3">${t.subject}</p>
-                                <div class="d-flex justify-content-center gap-2 mt-auto">
-                                    <a href="/admin/guru/${t.id}" class="btn btn-outline-primary btn-sm"><i class="bi bi-pen me-1"></i>Edit</a>
-                                    <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${t.id}"><i class="bi bi-trash me-1"></i>Hapus</button>
-                                </div>
+                                <div class="card-body text-center">
+                                    <a href="/guru/${t.id}" class="d-flex flex-column align-items-center text-center text-decoration-none">
+                                        <img src="/storage/${t.photo}" class="rounded-circle mb-3" width="100" height="100" style="object-fit: cover;">
+                                        <h5 class="card-title mb-1">${t.name}</h5>
+                                    </a>
+                                    <small class="text-muted mb-1">${t.nip}</small>
+                                    <p class="text-muted mb-1">${t.position=='Lainnya'?'-':t.position}</p>
+                                    <p class="text-muted mb-3">${t.subject}</p>
+                                    <div class="d-flex justify-content-center gap-2 mt-auto">
+                                        <a href="/admin/guru/${t.id}" class="btn btn-outline-warning btn-sm"><i class="bi bi-pen me-1"></i>Edit</a>
+                                        <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${t.id}"><i class="bi bi-trash me-1"></i>Hapus</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>`);

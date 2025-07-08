@@ -8,7 +8,7 @@
             ['label' => $achievement->title],
         ]
     ])
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -51,18 +51,25 @@
                             <input type="date" id="achieved_at" name="achieved_at" class="form-control" value="{{ old('achieved_at', $achievement->achieved_at->format('Y-m-d')) }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Deskripsi (Opsional)</label>
-                            <textarea id="description" name="description" class="form-control" rows="4">{{ old('description', $achievement->description) }}</textarea>
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <textarea id="description" name="description" class="form-control" rows="10">{{ old('description', $achievement->description) }}</textarea>
                         </div>
+                        @if($achievement->photo)
+                            <div class="mb-3">
+                                <img src="{{ asset('storage/' . $achievement->photo) }}" alt="Foto Prestasi" class="img-thumbnail" style="width: 280px;">
+                            </div>
+                        @endif
                         <div class="mb-3">
-                            <label for="photo" class="form-label">Unggah Foto</label>
+                            <label for="photo" class="form-label">Unggah Foto Baru</label>
                             <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
-                            @if($achievement->photo)
-                                <img src="{{ asset('storage/' . $achievement->photo) }}" alt="Foto Prestasi" class="img-thumbnail" style="max-width: 150px;">
-                            @endif
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 5.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('admin.achievement.index') }}" class="btn btn-outline-secondary">Batal</a>
+                            <a href="{{ route('admin.achievement.index') }}" class="btn btn-outline-danger">Batal</a>
                             <button type="button" id="save" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>

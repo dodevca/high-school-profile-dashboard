@@ -16,13 +16,13 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
-                    <input id="searchInput" type="search" class="form-control" placeholder="Cari modul..." aria-label="Search">
+                    <input id="searchInput" type="search" class="form-control" placeholder="Cari judul atau pelajaran..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center justify-content-end">
-                    <select id="majorFilter" class="form-select me-3">
+                    <select id="majorFilter" class="form-select me-2">
                         <option value="">Semua Jurusan</option>
                         @foreach($majors as $major)
                             <option value="{{ $major->id }}">{{ $major->name }}</option>
@@ -31,8 +31,8 @@
                     <select id="sortSelect" class="form-select">
                         <option value="created_at|desc">Terbaru</option>
                         <option value="created_at|asc">Terlama</option>
-                        <option value="grade_level|asc">Kelas Terkecil</option>
-                        <option value="grade_level|desc">Kelas Terbesar</option>
+                        <option value="grade_level|asc">Kelas &uarr;</option>
+                        <option value="grade_level|desc">Kelas &darr;</option>
                     </select>
                 </div>
             </div>
@@ -96,7 +96,7 @@ $(function(){
                 res.data.forEach(function(item){
                     $tb.append('<tr>\
                         <td><a href="/modul/'+item.major_code+'/'+item.id+'">'+item.title+'</a></td>\
-                        <td>'+ (item.major ?? '-') +'</td>\
+                        <td><a href="/modul/'+item.major_code+'">'+ (item.major ?? '-') +'</a></td>\
                         <td>'+item.grade_level+'</td>\
                         <td>'+item.semester+'</td>\
                         <td>'+item.subject+'</td>\

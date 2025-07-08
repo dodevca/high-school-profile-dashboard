@@ -21,12 +21,8 @@ class NewsController extends Controller
         $page                        = (int) $request->input('page', 1);
         $perPage                     = (int) $request->input('perPage', 10);
         $search                      = $request->input('search');
-        $filterActive                = $request->input('filter_active');
         [$sortField, $sortDirection] = explode('|', $sort) + [1 => 'desc'];
         $query                       = News::query();
-
-        if(!is_null($filterActive))
-            $query->where('active', $filterActive);
 
         if($search)
             $query->where(function($q) use ($search) {

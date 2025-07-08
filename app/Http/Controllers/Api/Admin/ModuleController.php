@@ -72,7 +72,7 @@ class ModuleController extends Controller
             $data = $request->validate([
                 'title'        => 'required|string|max:255',
                 'description'  => 'nullable|string',
-                'file'         => 'required|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+                'file'         => 'required|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:20480',
                 'grade_level'  => 'required|string|max:10',
                 'major_id'     => 'required|exists:majors,id',
                 'subject'      => 'nullable|string|max:255',
@@ -125,7 +125,7 @@ class ModuleController extends Controller
             $data = $request->validate([
                 'title'       => 'required|string|max:255',
                 'description' => 'nullable|string',
-                'file'        => 'nullable|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+                'file'        => 'nullable|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:20480',
                 'grade_level' => 'required|string|max:10',
                 'major_id'    => 'required|exists:majors,id',
                 'subject'     => 'nullable|string|max:255',

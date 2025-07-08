@@ -5,7 +5,7 @@
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
             ['label' => 'Guru dan Staff', 'url' => route('admin.teacher.index')],
-            ['label' => 'Tambah Guru atau Staff'],
+            ['label' => 'Tambah'],
         ]
     ])
     <div class="row mb-4">
@@ -24,7 +24,7 @@
                         <div class="mb-3">
                             <label for="position" class="form-label">Jabatan</label>
                             <select class="form-select" id="position" name="position" required>
-                                <option value="">Semua Jabatan</option>
+                                <option value="" disabled selected>Pilih Jabatan</option>
                                 <option value="0|Kepala Sekolah">Kepala Sekolah</option>
                                 <option value="1|Wakil Kepala Sekolah">Wakil Kepala Sekolah</option>
                                 <option value="2|Guru">Guru</option>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="nip" class="form-label">NIP</label>
-                            <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP (opsional)" value="" />
+                            <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" value="" />
                         </div>
                         <div class="mb-3">
                             <label for="subject" class="form-label">Mata Pelajaran</label>
@@ -43,9 +43,14 @@
                         <div class="mb-3">
                             <label for="photo" class="form-label">Upload Foto</label>
                             <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                            <div class="form-text">
+                                Jenis berkas: jpg, jpeg, png, atau webp.
+                                <br>
+                                Ukuran maksimal: 1.0 MB.
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('admin.teacher.index') }}" class="btn btn-outline-secondary">Batal</a>
+                            <a href="{{ route('admin.teacher.index') }}" class="btn btn-outline-danger">Batal</a>
                             <button type="button" id="add" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>

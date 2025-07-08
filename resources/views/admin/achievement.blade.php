@@ -11,30 +11,25 @@
         <div class="col-12">
             <div class="d-flex align-items-center justify-content-end mb-3">
                 <a href="{{ route('admin.achievement.add') }}" class="btn btn-primary">
-                    <i class="bx bx-plus me-1"></i>Tambah baru
+                    <i class="bx bx-plus me-1"></i>Tambah prestasi
                 </a>
             </div>
         </div>
         <div class="col-12">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mb-3">
                 <form id="searchForm" class="input-group mb-3 mb-md-0 w-100" style="max-width: 360px;" role="search">
-                    <input
-                        id="searchInput"
-                        type="search"
-                        class="form-control"
-                        placeholder="Cari pengumuman..."
-                        aria-label="Search">
+                    <input id="searchInput" type="search" class="form-control" placeholder="Cari prestasi..." aria-label="Search">
                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                 </form>
                 <div class="d-flex align-items-center mt-3 mt-md-0">
-                    <select id="categoryFilter" class="form-select me-3">
+                    <select id="categoryFilter" class="form-select me-2">
                         <option value="">Semua Kategori</option>
                         <option value="Murid">Murid</option>
                         <option value="Guru">Guru</option>
                         <option value="Sekolah">Sekolah</option>
                         <option value="Ekstrakulikuler">Ekstrakurikuler</option>
                     </select>
-                    <select id="levelFilter" class="form-select me-3">
+                    <select id="levelFilter" class="form-select me-2">
                         <option value="">Semua Tingkat</option>
                         <option value="Sekolah">Sekolah</option>
                         <option value="Kecamatan">Kecamatan</option>
@@ -46,12 +41,14 @@
                     <select id="sortSelect" class="form-select">
                         <option value="created_at|desc">Terbaru</option>
                         <option value="created_at|asc">Terlama</option>
+                        <option value="achieved_at|desc">Diraih Terbaru</option>
+                        <option value="achieved_at|asc">Diraih Terlama</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-striped mb-0">
@@ -59,11 +56,11 @@
                                 <tr>
                                     <th>Judul</th>
                                     <th>Dicapai Oleh</th>
+                                    <th>Dicapai Pada</th>
                                     <th>Kategori</th>
                                     <th>Tingkat</th>
                                     <th>Perolehan</th>
-                                    <th>Tanggal</th>
-                                    <th class="text-end">Aksi</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="achievementsContainer">
@@ -112,12 +109,12 @@ $(function(){
             } else {
                 res.data.forEach(function(item){
                     $tb.append('<tr>\
-                        <td>'+item.title+'</td>\
+                        <td><a href="/prestasi/'+item.id+'">'+item.title+'</a></td>\
                         <td>'+item.achieved_by+'</td>\
+                        <td>'+item.achieved_at+'</td>\
                         <td>'+item.category+'</td>\
                         <td>'+item.level+'</td>\
                         <td>'+item.rank+'</td>\
-                        <td>'+item.achieved_at+'</td>\
                         <td class="text-end">\
                         <a href="/admin/prestasi/'+item.id+'" class="btn btn-outline-warning btn-sm me-2"><i class="bx bx-edit-alt"></i></a>\
                         <button class="btn btn-outline-danger btn-sm btn-delete" data-id="'+item.id+'"><i class="bx bx-trash"></i></button>\
