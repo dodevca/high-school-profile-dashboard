@@ -80,7 +80,7 @@ class AchievementController extends Controller
 
             if($request->hasFile('photo'))
                 $data['photo'] = $request->file('photo')
-                    ->store('achievement', 'public');
+                    ->store('achievements', 'public');
 
             $ach = Achievement::create($data);
 
@@ -137,7 +137,7 @@ class AchievementController extends Controller
                     Storage::disk('public')->delete($ach->photo);
 
                 $data['photo'] = $request->file('photo')
-                    ->store('achievement', 'public');
+                    ->store('achievements', 'public');
             }
 
             $ach->update($data);

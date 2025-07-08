@@ -78,7 +78,7 @@ class TeacherController extends Controller
 
             if($request->hasFile('photo'))
                 $data['photo'] = $request->file('photo')
-                    ->store('teacher', 'public');
+                    ->store('teachers', 'public');
 
             $teacher = Teacher::create($data);
 
@@ -136,7 +136,7 @@ class TeacherController extends Controller
                     Storage::disk('public')->delete($teacher->photo);
 
                 $data['photo'] = $request->file('photo')
-                    ->store('teacher', 'public');
+                    ->store('teachers', 'public');
             }
 
             $teacher->update($data);
