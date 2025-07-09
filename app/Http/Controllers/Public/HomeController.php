@@ -33,6 +33,7 @@ class HomeController extends Controller
             ->get()
             ->map(fn($item) => tap($item, function($a){
                 $a->slug                 = Str::slug($a->title);
+                $a->content              = Str::words(strip_tags($a->content), 30, '…');
                 $a->created_at_formatted = $a->created_at->translatedFormat('d F Y');
             }));
 
@@ -42,6 +43,7 @@ class HomeController extends Controller
             ->get()
             ->map(fn($item) => tap($item, function($e){
                 $dt                      = Carbon::parse($e->start_time);
+                $e->description          = Str::words(strip_tags($e->description), 30, '…');
                 $e->slug                 = Str::slug($e->title);
                 $e->start_time_formatted = $dt->format('H:i');
                 $e->day                  = $dt->day;
