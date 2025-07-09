@@ -29,8 +29,8 @@
                     </select>
                     <select id="sortSelect" class="form-select">
                         <option value="start_time|asc">Mendatang</option>
-                        <option value="start_time|desc">Terbaru</option>
-                        <option value="start_time|asc">Terlama</option>
+                        <option value="created_at|desc">Terbaru</option>
+                        <option value="created_at|asc">Terlama</option>
                     </select>
                 </div>
             </div>

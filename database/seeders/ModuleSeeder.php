@@ -15,26 +15,17 @@ class ModuleSeeder extends Seeder
     {
         Module::truncate();
 
-        Module::create([
-            'title'       => 'Modul Dasar Pemrograman',
-            'description' => 'Modul ini membahas dasar-dasar pemrograman menggunakan bahasa PHP.',
-            'file'        => 'modules/basis-pemrograman.pdf',
-            'cover'       => 'covers/basis-pemrograman.jpg',
-            'grade_level' => '10',
-            'major_id'    => 1,
-            'subject'     => 'Pemrograman',
-            'semester'    => 'Ganjil',
-        ]);
-
-        Module::create([
-            'title'       => 'Modul Jaringan Komputer',
-            'description' => 'Materi lengkap tentang konsep dasar dan konfigurasi jaringan komputer.',
-            'file'        => 'modules/jaringan-komputer.pdf',
-            'cover'       => 'covers/jaringan-komputer.jpg',
-            'grade_level' => '11',
-            'major_id'    => 2,
-            'subject'     => 'Jaringan',
-            'semester'    => 'Genap',
-        ]);
+        for($i = 1; $i <= 22; $i++) {
+            Module::create([
+                'title'        => "Modul Pembelajaran {$i}",
+                'description'  => "Deskripsi singkat untuk modul pembelajaran nomor {$i}.",
+                'file'         => 'modules/example.pdf',
+                'cover'        => null,
+                'grade_level'  => rand(10, 12),
+                'major_id'     => rand(1, 7),
+                'subject'      => "Mata Pelajaran {$i}",
+                'semester'     => $i % 2 === 1 ? 'Ganjil' : 'Genap',
+            ]);
+        }
     }
 }

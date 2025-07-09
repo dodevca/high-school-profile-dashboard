@@ -87,7 +87,11 @@ class EventController extends Controller
                 'image'       => 'nullable|image|max:2048',
             ]);
 
-            $data['active'] = true;
+
+            $allowed             = '<p><a><strong><em><ul><ol><li><br>';
+            $data['description'] = strip_tags($data['description'], $allowed);
+            $data['description'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['description']);
+            $data['active']      = true;
 
             if($request->hasFile('image')) {
                 $data['image'] = $request->file('image')
@@ -152,7 +156,10 @@ class EventController extends Controller
                 'image'       => 'nullable|image|max:2048',
             ]);
 
-            $data['active'] = true;
+            $allowed             = '<p><a><strong><em><ul><ol><li><br>';
+            $data['description'] = strip_tags($data['description'], $allowed);
+            $data['description'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['description']);
+            $data['active']      = true;
 
             if($request->hasFile('image')) {
                 if($event->image)

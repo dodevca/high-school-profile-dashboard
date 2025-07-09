@@ -67,10 +67,7 @@ Route::prefix('agenda')->name('event.')->controller(PublicEvent::class)->group(f
     Route::get('/{id}-{hash}', 'view')->whereNumber('id')->name('view');
 });
 
-Route::prefix('modul')->name('module.')->controller(PublicModule::class)->group(function () {
-    Route::get('/{hash}', 'index')->where('hash', '[0-9A-Za-z\-]+')->name('index');
-    Route::get('/{hash}/{id}', 'view')->where('hash', '[0-9A-Za-z\-]+')->whereNumber('id')->name('view');
-});
+Route::get('/modul/{hash}', [PublicModule::class, 'index'])->where('hash', '[0-9A-Za-z\-]+')->name('module');
 
 Route::get('/prestasi', [PublicAchievement::class, 'index'])->name('achievement');
 

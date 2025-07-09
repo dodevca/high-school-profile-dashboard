@@ -33,6 +33,8 @@
                         <option value="created_at|asc">Terlama</option>
                         <option value="grade_level|asc">Kelas &uarr;</option>
                         <option value="grade_level|desc">Kelas &darr;</option>
+                        <option value="title|asc">A-Z</option>
+                        <option value="title|desc">Z-A</option>
                     </select>
                 </div>
             </div>
@@ -95,7 +97,7 @@ $(function(){
             } else {
                 res.data.forEach(function(item){
                     $tb.append('<tr>\
-                        <td><a href="/modul/'+item.major_code+'/'+item.id+'">'+item.title+'</a></td>\
+                        <td>'+item.title+'</td>\
                         <td><a href="/modul/'+item.major_code+'">'+ (item.major ?? '-') +'</a></td>\
                         <td>'+item.grade_level+'</td>\
                         <td>'+item.semester+'</td>\

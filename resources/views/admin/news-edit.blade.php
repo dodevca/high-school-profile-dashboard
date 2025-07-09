@@ -1,5 +1,9 @@
 @extends('admin')
 
+@section('stylesheet')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
@@ -25,8 +29,11 @@
                             <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $news->title) }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="form-label">Konten</label>
-                            <textarea class="form-control" id="content" name="content" rows="16">{{ old('content', $news->content) }}</textarea>
+                            <label for="news-content" class="form-label">Konten</label>
+                            <textarea class="form-control d-none" id="news-content" name="content" rows="16">{{ old('content', $news->content) }}</textarea>
+                            <div id="quill-container" class="rounded-bottom" style="height: 398px;">
+                                {!! old('content', $news->content) !!}
+                            </div>
                         </div>
                         @if($news->thumbnail)
                             <div class="mb-3">
@@ -54,11 +61,23 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/alert.js') }}"></script>
-<script src="{{ asset('js/edit.js') }}"></script>
-<script>
-    $(function() {
-        $('#save').on('click', saveData);
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
+    <script>
+        const quill = new Quill('#quill-container', {
+            theme: 'snow'
+        });
+    </script>
+    <script>
+        $(function() {
+            $('#save').on('click', function(){
+                var html = quill.root.innerHTML;
+
+                $('#news-content').val(html);
+
+                saveData();
+            });
+        });
+    </script>
 @endsection

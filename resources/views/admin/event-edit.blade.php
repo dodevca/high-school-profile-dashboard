@@ -1,5 +1,9 @@
 @extends('admin')
 
+@section('stylesheet')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
@@ -24,7 +28,10 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" rows="10" required>{{ old('description', $event->description) }}</textarea>
+                            <textarea class="form-control d-none" id="description" name="description" rows="10" required>{!! old('description', $event->description) !!}</textarea>
+                            <div id="quill-container" class="rounded-bottom" style="height: 254px;">
+                                {!! old('description', $event->description) !!}
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -75,11 +82,23 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/alert.js') }}"></script>
-<script src="{{ asset('js/edit.js') }}"></script>
-<script>
-    $(function() {
-        $('#save').on('click', saveData);
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="{{ asset('js/alert.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
+    <script>
+        const quill = new Quill('#quill-container', {
+            theme: 'snow'
+        });
+    </script>
+    <script>
+        $(function() {
+            $('#save').on('click', function(){
+                var html = quill.root.innerHTML;
+
+                $('#description').val(html);
+
+                saveData();
+            });
+        });
+    </script>
 @endsection

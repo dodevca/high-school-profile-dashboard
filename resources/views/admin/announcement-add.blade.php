@@ -1,5 +1,9 @@
 @extends('admin')
 
+@section('stylesheet')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
@@ -24,8 +28,10 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="Masukkan judul pengumuman" required>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="form-label">Isi Pengumuman</label>
-                            <textarea class="form-control" id="content" name="content" rows="16" placeholder="Tulis isi pengumuman di sini..." required></textarea>
+                            <label for="announcement-content" class="form-label">Isi Pengumuman</label>
+                            <textarea class="form-control d-none" id="announcement-content" name="content" rows="16" placeholder="Tulis isi pengumuman di sini..." required></textarea>
+                            <div id="quill-container" class="rounded-bottom" style="height: 398px;">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="major_id" class="form-label">Jurusan</label>
@@ -60,11 +66,24 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="{{ asset('js/alert.js') }}"></script>
     <script src="{{ asset('js/add.js') }}"></script>
     <script>
+        const quill = new Quill('#quill-container', {
+            placeholder: 'Tulis isi pengumuman di sini...',
+            theme: 'snow'
+        });
+    </script>
+    <script>
         $(function() {
-            $('#add').on('click', addData);
+            $('#add').on('click', function(){
+                var html = quill.root.innerHTML;
+
+                $('#announcement-content').val(html);
+
+                addData();
+            });
         });
     </script>
 @endsection

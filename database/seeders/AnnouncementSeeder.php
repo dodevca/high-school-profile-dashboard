@@ -15,20 +15,32 @@ class AnnouncementSeeder extends Seeder
     {
         Announcement::truncate();
 
-        Announcement::create([
-            'title'     => 'Libur Sekolah Hari Jumat',
-            'content'   => '<p>Sehubungan dengan peringatan hari besar, SMK N 1 Seyegan akan meliburkan kegiatan pembelajaran pada hari Jumat, 17 Juli 2025. Semua siswa diharapkan kembali pada Senin, 20 Juli 2025.</p>',
-            'major_id'  => null,
-            'image'     => 'images/placeholder.webp',
-            'active'    => true
-        ]);
+        $announcements = [
+            [
+                'title'     => 'Libur Sekolah Hari Jumat',
+                'content'   => '<p>Sehubungan dengan peringatan hari besar, SMK N 1 Seyegan akan meliburkan kegiatan pembelajaran pada hari Jumat, 17 Juli 2025. Semua siswa diharapkan kembali pada Senin, 20 Juli 2025.</p>',
+                'major_id'  => null,
+                'image'     => 'announcements/5.jpg',
+                'active'    => true,
+            ],
+            [
+                'title'     => 'Pendaftaran Olimpiade Matematika',
+                'content'   => '<p>Pendaftaran <strong>Olimpiade Matematika</strong> tingkat kabupaten dibuka hingga 25 Juli 2025. Silakan hubungi guru matematika untuk informasi lebih lanjut.</p>',
+                'major_id'  => 3,
+                'image'     => 'announcements/6.jpg',
+                'active'    => true,
+            ],
+            [
+                'title'     => 'Workshop Desain Grafis',
+                'content'   => '<p>Jangan lewatkan <em>Workshop Desain Grafis</em> untuk jurusan Multimedia, akan diadakan pada 30 Juli 2025 di Laboratorium Komputer.</p>',
+                'major_id'  => 6,
+                'image'     => 'announcements/7.jpg',
+                'active'    => true,
+            ],
+        ];
 
-        Announcement::create([
-            'title'     => 'Workshop Keamanan Jaringan untuk TKJ',
-            'content'   => '<p>Jurusan Teknik Komputer dan Jaringan akan mengadakan workshop keamanan jaringan pada tanggal 25 Juli 2025 di laboratorium TKJ. Peserta diharapkan mendaftar ke wali kelas masing-masing.</p>',
-            'major_id'  => null,
-            'image'     => 'images/placeholder.webp',
-            'active'    => true
-        ]);
+        foreach($announcements as $a) {
+            Announcement::create($a);
+        }
     }
 }

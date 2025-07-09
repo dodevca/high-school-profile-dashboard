@@ -16,26 +16,51 @@ class EventSeeder extends Seeder
     {
         Event::truncate();
 
-        Event::create([
-            'title'        => 'Workshop Pemrograman Laravel',
-            'description'  => 'Kami mengundang seluruh siswa jurusan RPL untuk mengikuti workshop dasar pemrograman Laravel yang akan dipandu oleh instruktur berpengalaman.',
-            'start_time'   => Carbon::now()->addDays(5)->setTime(9, 00),
-            'end_time'     => Carbon::now()->addDays(5)->setTime(12, 00),
-            'location'     => 'Laboratorium Komputer SMK N 1 Seyegan',
-            'image'        => 'images/placeholder.webp',
-            'type'         => 'External',
-            'active'       => true,
-        ]);
+        $events = [
+            [
+                'title'       => 'Hari Olahraga Sekolah',
+                'description' => '<p>Ayo meriahkan <strong>Hari Olahraga Sekolah</strong> dengan berbagai lomba atletik dan pertandingan persahabatan antar jurusan.</p>',
+                'start_time'  => Carbon::now()->addWeek()->setTime(7, 0),
+                'end_time'    => Carbon::now()->addWeek()->setTime(15, 0),
+                'location'    => 'Lapangan Utama SMK N 1 Seyegan',
+                'image'       => 'events/1.png',
+                'type'        => 'Internal',
+                'active'      => true,
+            ],
+            [
+                'title'       => 'Pameran Karya Siswa',
+                'description' => '<p>Jangan lewatkan <em>Pameran Karya Siswa</em> di aula utama, menampilkan hasil proyek RPL, TKJ, dan MM.</p>',
+                'start_time'  => Carbon::now()->addDays(10)->setTime(9, 0),
+                'end_time'    => Carbon::now()->addDays(10)->setTime(17, 0),
+                'location'    => 'Aula Utama SMK N 1 Seyegan',
+                'image'       => 'events/2.png',
+                'type'        => 'External',
+                'active'      => true,
+            ],
+            [
+                'title'       => 'Pelatihan Pengembangan Kurikulum',
+                'description' => '<p>Pelatihan bagi seluruh guru terkait <strong>pengembangan kurikulum</strong> berbasis kompetensi.</p>',
+                'start_time'  => Carbon::now()->addDays(20)->setTime(8, 30),
+                'end_time'    => Carbon::now()->addDays(20)->setTime(14, 30),
+                'location'    => 'Ruang Serbaguna SMK N 1 Seyegan',
+                'image'       => 'events/3.png',
+                'type'        => 'Internal',
+                'active'      => true,
+            ],
+            [
+                'title'       => 'Study Tour ke Museum Sejarah',
+                'description' => '<p>Study tour ke <a href="https://museumsejarah.example.com" target="_blank">Museum Sejarah</a> untuk memperkaya wawasan sejarah lokal.</p>',
+                'start_time'  => Carbon::now()->addDays(30)->setTime(6, 0),
+                'end_time'    => Carbon::now()->addDays(30)->setTime(18, 0),
+                'location'    => 'Museum Sejarah Kota Yogyakarta',
+                'image'       => 'events/4.png',
+                'type'        => 'External',
+                'active'      => true,
+            ],
+        ];
 
-        Event::create([
-            'title'        => 'Hari Olahraga Sekolah',
-            'description'  => 'Ayo meriahkan Hari Olahraga Sekolah dengan berbagai lomba atletik dan pertandingan persahabatan antar jurusan.',
-            'start_time'   => Carbon::now()->addWeek()->setTime(7, 00),
-            'end_time'     => Carbon::now()->addWeek()->setTime(15, 00),
-            'location'     => 'Lapangan Utama SMK N 1 Seyegan',
-            'image'        => 'images/placeholder.webp',
-            'type'         => 'Internal',
-            'active'       => true,
-        ]);
+        foreach ($events as $e) {
+            Event::create($e);
+        }
     }
 }

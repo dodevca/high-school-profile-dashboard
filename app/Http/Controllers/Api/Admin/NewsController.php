@@ -65,8 +65,11 @@ class NewsController extends Controller
                 'thumbnail' => 'nullable|image|max:2048',
             ]);
 
-            $data['slug']   = Str::slug($data['title']);
-            $data['active'] = true;
+            $data['slug']    = Str::slug($data['title']);
+            $allowed         = '<p><a><strong><em><ul><ol><li><br>';
+            $data['content'] = strip_tags($data['content'], $allowed);
+            $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
+            $data['active']  = true;
 
             if($request->hasFile('thumbnail'))
                 $data['thumbnail'] = $request->file('thumbnail')
@@ -118,7 +121,10 @@ class NewsController extends Controller
             ]);
 
             $data['slug']   = Str::slug($data['title']);
-            $data['active'] = true;
+            $allowed         = '<p><a><strong><em><ul><ol><li><br>';
+            $data['content'] = strip_tags($data['content'], $allowed);
+            $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
+            $data['active']  = true;
 
             if ($request->hasFile('thumbnail')) {
                 if($news->thumbnail)

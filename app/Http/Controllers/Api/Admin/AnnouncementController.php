@@ -72,11 +72,14 @@ class AnnouncementController extends Controller
                 'image'    => 'nullable|image|max:2048',
             ]);
 
-            $data['active'] = true;
+            $allowed         = '<p><a><strong><em><ul><ol><li><br>';
+            $data['content'] = strip_tags($data['content'], $allowed);
+            $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
+            $data['active']  = true;
 
             if($request->hasFile('image'))
                 $data['image'] = $request->file('image')
-                    ->store('announcement', 'public');
+                    ->store('announcements', 'public');
 
             $announcement = Announcement::create($data);
 
@@ -123,15 +126,18 @@ class AnnouncementController extends Controller
                 'major_id' => 'nullable|exists:majors,id',
                 'image'    => 'nullable|image|max:2048',
             ]);
-
-            $data['active'] = true;
+            
+            $allowed         = '<p><a><strong><em><ul><ol><li><br>';
+            $data['content'] = strip_tags($data['content'], $allowed);
+            $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
+            $data['active']  = true;
 
             if ($request->hasFile('image')) {
                 if($announcement->image)
                     Storage::disk('public')->delete($announcement->image);
                     
                 $data['image'] = $request->file('image')
-                    ->store('announcement', 'public');
+                    ->store('announcements', 'public');
             }
 
             $announcement->update($data);
