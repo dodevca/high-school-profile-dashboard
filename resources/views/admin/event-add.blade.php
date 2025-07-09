@@ -1,5 +1,9 @@
 @extends('admin')
 
+@section('stylesheet')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
@@ -23,7 +27,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control"  id="description" name="description" rows="10" placeholder="Tulis deskripsi agenda..." required></textarea>
+                            <textarea class="form-control d-none"  id="description" name="description" rows="10" placeholder="Tulis deskripsi agenda..." required></textarea>
+                            <div id="quill-container" class="rounded-bottom" style="height: 254px;">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -70,11 +76,24 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="{{ asset('js/alert.js') }}"></script>
     <script src="{{ asset('js/add.js') }}"></script>
     <script>
+        const quill = new Quill('#quill-container', {
+            placeholder: 'Tulis deskripsi agenda...',
+            theme: 'snow'
+        });
+    </script>
+    <script>
         $(function() {
-            $('#add').on('click', addData);
+            $('#add').on('click', function(){
+                var html = quill.root.innerHTML;
+
+                $('#description').val(html);
+
+                addData();
+            });
         });
     </script>
 @endsection

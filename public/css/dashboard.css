@@ -11301,3 +11301,15 @@ body.sidebar-toggled footer.sticky-footer {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.ql-toolbar.ql-snow{
+  border-top-left-radius: var(--bs-border-radius) !important;
+  border-top-right-radius: var(--bs-border-radius) !important;
+}
+
+.ql-editor {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #6e707e !important;
+}

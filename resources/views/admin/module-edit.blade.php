@@ -72,7 +72,7 @@
                             <input type="text" id="subject" name="subject" class="form-control" value="{{ old('subject', $module->subject) }}">
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('admin.event.index') }}" class="btn btn-outline-danger">Batal</a>
+                            <a href="{{ route('admin.module.index') }}" class="btn btn-outline-danger">Batal</a>
                             <button type="button" class="btn btn-primary" id="save">Simpan</button>
                         </div>
                     </form>

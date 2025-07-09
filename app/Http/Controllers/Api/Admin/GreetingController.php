@@ -46,7 +46,12 @@ class GreetingController extends Controller
                 'content' => 'required|string',
                 'photo'   => 'nullable|image|max:2048',
             ]);
-            if ($request->hasFile('photo')) {
+
+            $allowed         = '<p><a><strong><em><ul><ol><li><br>';
+            $data['content'] = strip_tags($data['content'], $allowed);
+            $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
+
+            if($request->hasFile('photo')) {
                 if($greeting->photo)
                     Storage::disk('public')->delete($greeting->photo);
 

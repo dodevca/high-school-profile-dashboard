@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Greeting;
 
 class GreetingController extends Controller
 {
     public function index()
     {
-        return view('public.greeting');
+        $greeting = Greeting::first();
+
+        return view('public.greeting', compact('greeting'));
     }
 }

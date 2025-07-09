@@ -112,7 +112,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="small d-none d-lg-inline text-gray-600 me-2">Admin</span>
+                                <span class="small d-none d-lg-inline text-gray-600 me-2">{{ $user->name }}</span>
                                 <i class="bx bxs-user"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="userDropdown">

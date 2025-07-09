@@ -55,7 +55,18 @@ class InformationController extends Controller
                 'vision'          => 'required|string',
                 'mission'         => 'required|string',
                 'logo'            => 'nullable|image|max:2048',
+                'short_profile'   => 'required|string',
+                'youtube_url'     => 'nullable|string|url:http,https',
+                'youtube_url_2'   => 'nullable|string|url:http,https',
+                'hero'            => 'nullable|image|max:2048',
             ]);
+
+            $allowed               = '<p><a><strong><em><ul><ol><li><br>';
+            $data['mission']       = strip_tags($data['mission'], $allowed);
+            $data['mission']       = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['mission']);
+            $allowed               = '<p><a><strong><em><ul><ol><li><br>';
+            $data['short_profile'] = strip_tags($data['short_profile'], $allowed);
+            $data['short_profile'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['short_profile']);
 
             if($request->hasFile('logo')) {
                 if($information->logo)
@@ -63,6 +74,14 @@ class InformationController extends Controller
 
                 $path         = $request->file('logo')->store('logo', 'public');
                 $data['logo'] = $path;
+            }
+
+            if($request->hasFile('hero')) {
+                if($information->hero)
+                    Storage::disk('public')->delete($information->hero);
+
+                $path         = $request->file('hero')->store('hero', 'public');
+                $data['hero'] = $path;
             }
 
             $information->update($data);

@@ -28,8 +28,8 @@ class ModuleController extends Controller
 
         if($search)
             $query->where('title', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%")
-                ->orWhere('subject', 'like', "%{$search}%");
+                ->orWhere('subject', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
 
         if($majorId)
             $query->where('major_id', $majorId);
@@ -81,7 +81,7 @@ class ModuleController extends Controller
 
             if($request->hasFile('file'))
                 $data['file'] = $request->file('file')
-                    ->store('module', 'public');
+                    ->store('modules', 'public');
 
             $module = Module::create($data);
 
@@ -137,7 +137,7 @@ class ModuleController extends Controller
                     Storage::disk('public')->delete($module->file);
 
                 $data['file'] = $request->file('file')
-                    ->store('module', 'public');
+                    ->store('modules', 'public');
             }
 
             $module->update($data);

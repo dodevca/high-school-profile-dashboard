@@ -31,6 +31,10 @@ class Information extends Model
         'logo',
         'vision',
         'mission',
+        'short_profile',
+        'youtube_url',
+        'youtube_url_2',
+        'hero',
     ];
 
     /**
