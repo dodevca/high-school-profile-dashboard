@@ -30,7 +30,7 @@ class TeacherController extends Controller
                   ->orWhere('subject', 'like', "%{$search}%");
             });
         
-        if($priority)
+        if($priority !== null)
             $query->where('priority', $priority);
 
         $query->orderBy($sortField, $sortDir);
