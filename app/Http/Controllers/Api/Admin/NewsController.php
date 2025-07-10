@@ -126,7 +126,7 @@ class NewsController extends Controller
             $data['content'] = preg_replace('#(<[^>]+?)on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '$1', $data['content']);
             $data['active']  = true;
 
-            if ($request->hasFile('thumbnail')) {
+            if($request->hasFile('thumbnail')) {
                 if($news->thumbnail)
                     Storage::disk('public')->delete($news->thumbnail);
                     

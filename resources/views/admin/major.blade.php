@@ -67,7 +67,7 @@ $(function(){
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h5 class="mb-1">${item.name}</h5>
+                                        <h5 class="mb-1">${item.name} (${item.code})</h5>
                                         <div class="text-muted small d-flex flex-wrap gap-3">
                                             <span>${item.created_at}</span>
                                         </div>

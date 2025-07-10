@@ -4,8 +4,8 @@
     @include('partials.breadcrumbs', [
         'breadcrumbs' => [
             ['label' => 'Dashboard', 'url' => route('admin.home')],
-            ['label' => 'Agenda', 'url' => route('admin.major.index')],
-            ['label' => $major->title],
+            ['label' => 'Jurusan', 'url' => route('admin.major.index')],
+            ['label' => $major->name],
         ]
     ])
     <div class="row mb-4">

@@ -98,7 +98,7 @@
                     <h3 class="mb-4">Profil Singkat</h3>
                     {!! $information->short_profile !!}
                     <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-start">
-                        <a href="{{ route('greeting') }}" class="btn btn-primary mb-3 mb-lg-0 me-lg-2">Sambutan</a>
+                        <a href="{{ route('greeting') }}" class="btn btn-outline-primary mb-3 mb-lg-0 me-lg-2">Sambutan</a>
                         <a href="{{ route('information') }}" class="btn btn-outline-primary">Visi & Misi</a>
                     </div>
                 </div>
