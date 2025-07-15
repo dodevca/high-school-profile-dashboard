@@ -70,7 +70,7 @@
                                             <div class="d-flex flex-wrap align-items-center justify-content-between">\
                                                 <div class="d-flex align-items-start">\
                                                     <img src="/storage/' + item.thumbnail + '" class="me-3" style="width: 100px;height: 50px;object-fit:cover;">\
-                                                    <a href="/berita/' + item.slug + '" class="text-dark text-decoration-none">\
+                                                    <a href="/berita/' + item.id + '-' + item.slug + '" class="text-dark text-decoration-none">\
                                                         <h5 class="mb-2">'+ item.title +'</h5>\
                                                         <div class="d-flex text-muted small">\
                                                             <div class="me-3">'+ item.created_at +'</div>\

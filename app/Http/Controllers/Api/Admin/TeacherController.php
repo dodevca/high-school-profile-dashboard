@@ -16,7 +16,7 @@ class TeacherController extends Controller
      */
     public function index(Request $request)
     {
-        $search                = $request->input('query');
+        $search                = $request->input('search');
         $priority              = $request->input('priority');
         $sort                  = $request->input('sort', 'created_at|desc');
         $page                  = (int) $request->input('page', 1);

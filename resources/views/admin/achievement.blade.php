@@ -109,7 +109,7 @@ $(function(){
             } else {
                 res.data.forEach(function(item){
                     $tb.append('<tr>\
-                        <td><a href="/prestasi/'+item.id+'">'+item.title+'</a></td>\
+                        <td>'+item.title+'</td>\
                         <td>'+item.achieved_by+'</td>\
                         <td>'+item.achieved_at+'</td>\
                         <td>'+item.category+'</td>\

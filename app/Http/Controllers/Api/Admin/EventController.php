@@ -48,6 +48,7 @@ class EventController extends Controller
             return [
                 'id'          => $event->id,
                 'title'       => $event->title,
+                'slug'        => Str::slug($event->title),
                 'description' => strlen($event->description) > 100 ? substr($event->description, 0, 100) . '...' : $event->description,
                 'start_time'  => Carbon::parse($event->start_time)->format('d-m-Y H:i'),
                 'end_time'    => Carbon::parse($event->end_time)->format('d-m-Y H:i'),

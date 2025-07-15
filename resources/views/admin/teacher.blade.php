@@ -81,10 +81,10 @@
                         $row.append(`<div class="col-md-6 col-lg-4">
                             <div class="card h-100">
                                 <div class="card-body text-center">
-                                    <a href="/guru/${t.id}" class="d-flex flex-column align-items-center text-center text-decoration-none">
+                                    <div class="d-flex flex-column align-items-center text-center text-decoration-none">
                                         <img src="/storage/${t.photo}" class="rounded-circle mb-3" width="100" height="100" style="object-fit: cover;">
                                         <h5 class="card-title mb-1">${t.name}</h5>
-                                    </a>
+                                    </div>
                                     <small class="text-muted mb-1">${t.nip}</small>
                                     <p class="text-muted mb-1">${t.position=='Lainnya'?'-':t.position}</p>
                                     <p class="text-muted mb-3">${t.subject}</p>

@@ -78,7 +78,7 @@
                                     <div class="card-body d-flex justify-content-between align-items-center">\
                                         <div class="d-flex align-items-start">\
                                             <img src="/storage/' + item.image + '" class="me-3" style="width: 100px;height: 50px;object-fit:cover;">\
-                                            <a href="/pengumuman/' + item.id + '" class="text-dark text-decoration-none">\
+                                            <a href="/pengumuman/' + item.id + '-' + item.slug + '" class="text-dark text-decoration-none">\
                                                 <h5 class="mb-1">'+item.title+'</h5>\
                                                 <div class="d-flex align-items-center gap-2">\
                                                     <small class="text-muted">'+item.created_at+'</small>\

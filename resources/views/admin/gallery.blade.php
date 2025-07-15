@@ -66,7 +66,7 @@ $(function(){
                         <div class="col-lg-12 mb-3">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
-                                    <a href="/galeri/${item.id}" class="d-flex align-items-center text-decoration-none">
+                                    <a href="/galeri/${item.id}-${item.slug}" class="d-flex align-items-center text-decoration-none">
                                         <img src="/storage/${item.thumbnail}" class="rounded me-3" width="72" height="72" style="object-fit: cover;">
                                         <div>
                                             <h5 class="mb-1">${item.title}</h5>
