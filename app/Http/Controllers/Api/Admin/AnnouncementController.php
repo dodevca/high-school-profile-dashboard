@@ -48,6 +48,7 @@ class AnnouncementController extends Controller
             return [
                 'id'         => $announcement->id,
                 'title'      => $announcement->title,
+                'slug'       => Str::slug($announcement->title),
                 'image'      => $announcement->image,
                 'major_id'   => $announcement->major_id,
                 'major'      => $announcement->major?->name,

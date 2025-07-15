@@ -79,7 +79,7 @@ $(function(){
                             <div class="card-body">\
                                 <div class="d-flex flex-wrap align-items-center justify-content-between">\
                                     <div class="d-flex flex-column">\
-                                        <a href="/agenda/' + item.id + '" class="text-dark text-decoration-none">\
+                                        <a href="/agenda/' + item.id + '-' + item.slug + '" class="text-dark text-decoration-none">\
                                                 <h5 class="mb-2">'+ item.title +'</h5>\
                                                 <div class="badge bg-info text-light mb-2">'+ item.start_time +'</div>\
                                                 <div class="badge bg-primary text-light mb-2">'+ item.end_time +'</div>\

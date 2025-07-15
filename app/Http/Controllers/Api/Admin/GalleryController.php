@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Gallery;
-use App\Models\GalleryImage;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+use App\Models\Gallery;
+use App\Models\GalleryImage;
 
 class GalleryController extends Controller
 {
@@ -45,6 +46,7 @@ class GalleryController extends Controller
             return [
                 'id'          => $gallery->id,
                 'title'       => $gallery->title,
+                'slug'        => Str::slug($gallery->title),
                 'description' => $gallery->description,
                 'thumbnail'   => $gallery->thumbnail,
                 'totalImages' => $gallery->gallery_image_count,
